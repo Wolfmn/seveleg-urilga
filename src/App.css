@@ -1,0 +1,934 @@
+/* ===== GOOGLE FONTS — ЗАСАГДСАН ===== */
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap');
+/* Хэрэглэх үед: "Noto Serif" */
+
+
+/* ===== БҮХИЙЛЭН ТОГТООГДСОН ӨНГӨНИЙ СИСТЕМ ===== */
+:root {
+  --altan-undsen: #c4982d;
+  --altan-baraan: #b78920;
+  --altan-caiga: #d4af37;
+  --devsge-undsen: #fffbf5;
+  --text-baraan: #3b362c;
+  --text-dond: #6b5d4d;
+  --text-caiga: #968570;
+  --huree-tsagaan: #ffffff;
+  --huree-saaraal: #eef2f5;
+  --ulaan-undsen: #dc2626;
+  --ulaan-caiga: #ef4444;
+  --focus-ring: 2px solid var(--altan-undsen);
+}
+
+
+/* ===== БАРУУН ТАЛЫН SCROLL БҮРЭН АЛГА БОЛГОХ ===== */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-family: "Noto Serif", Georgia, "Helvetica Neue", sans-serif;
+  background: var(--devsge-undsen);
+  color: var(--text-baraan);
+  font-weight: 450;
+  line-height: 1.65;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* Scroll-ыг багасгах */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.12);
+  border-radius: 2px;
+}
+
+
+.app-container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  position: relative;
+  overflow-x: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+/* ===== ХҮНДЭТГЭСЭН ХЭСЭГ ===== */
+.respect-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 12px 0 8px;
+}
+
+.respect-lines {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.respect-line {
+  width: 60px;
+  height: 1px;
+  background: #253813;
+  opacity: 0.4;
+}
+
+.respect-text {
+  font-family: "Noto Serif", Georgia, serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #253813;
+  line-height: 1.5;
+}
+
+.crown-icon {
+  flex-shrink: 0;
+}
+
+.family-name {
+  text-align: center;
+  font-family: "Noto Serif", Georgia, serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--altan-undsen);
+  margin-top: 8px;
+}
+
+
+/* ===== 4 БУЛАНД ХЭЭ ===== */
+.corner-khee {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  color: var(--altan-undsen);
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.corner-khee.top-left {
+  top: 0;
+  left: 0;
+  transform: rotate(-90deg);
+}
+.corner-khee.top-right {
+  top: 0;
+  right: 0;
+  transform: rotate(90deg) scaleX(-1);
+}
+.corner-khee.bottom-left {
+  bottom: 0;
+  left: 0;
+  transform: rotate(180deg);
+}
+.corner-khee.bottom-right {
+  bottom: 0;
+  right: 0;
+  transform: rotate(90deg);
+}
+
+
+/* ===== ХЭЭТЭЙ ЧИМЭГЛЭЛ — Section бүрт ===== */
+.pattern-divider {
+  display: block;
+  max-width: 280px;
+  width: 70%;
+  height: auto;
+  margin: 0 auto 16px;
+  opacity: 0.65;
+}
+
+.pattern-top,
+.pattern-bottom {
+  display: block;
+  max-width: 140px;
+  width: 35%;
+  height: auto;
+  opacity: 0.35;
+}
+
+.pattern-top {
+  margin: 0 auto 10px;
+}
+
+.pattern-bottom {
+  margin: 10px auto 0;
+}
+
+@keyframes gentleRotate {
+  0% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+  100% { transform: rotate(-3deg); }
+}
+
+@keyframes gentleRotateRev {
+  0% { transform: rotate(3deg); }
+  50% { transform: rotate(-3deg); }
+  100% { transform: rotate(3deg); }
+}
+
+.rotate-pattern {
+  animation: gentleRotate 8s ease-in-out infinite;
+}
+
+.rotate-pattern-rev {
+  animation: gentleRotateRev 8s ease-in-out infinite;
+}
+
+
+/* ===== ХӨГЖИМ ТОВЧЛУУР — Алтан шаргал дизайн ===== */
+.floating-music-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid #d4af37;
+  color: #b78920;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 999;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(196, 152, 45, 0.15);
+}
+
+.floating-music-btn:hover {
+  background: #fff3c8;
+  border-color: #b78920;
+  transform: scale(1.08);
+  box-shadow: 0 4px 16px rgba(196, 152, 45, 0.3);
+}
+
+.floating-music-btn.playing {
+  background: linear-gradient(135deg, #b78920, #d4af37);
+  border-color: #b78920;
+  color: #ffffff;
+}
+
+/* Дууны долгион — Алтан өнгө */
+.floating-music-btn .wave {
+  position: absolute;
+  width: 4px;
+  background: #d4af37;
+  border-radius: 2px;
+  bottom: 12px;
+  opacity: 0;
+  animation: waveBounce 1s ease-in-out infinite;
+}
+
+.floating-music-btn.playing .wave {
+  background: #ffffff;
+}
+
+.floating-music-btn .wave-1 {
+  left: 12px;
+  height: 12px;
+  animation-delay: 0s;
+}
+.floating-music-btn .wave-2 {
+  left: 20px;
+  height: 18px;
+  animation-delay: 0.15s;
+}
+.floating-music-btn .wave-3 {
+  right: 12px;
+  height: 12px;
+  animation-delay: 0.3s;
+}
+
+@keyframes waveBounce {
+  0%, 100% { transform: scaleY(1); opacity: 0.8; }
+  50% { transform: scaleY(1.8); opacity: 1; }
+}
+
+.floating-music-btn .icon-main {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* ===== НЭЭЛТИЙН ДЭЛГЭЦ ===== */
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, #fffbf5 0%, #f8f0dc 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.splash-content {
+  text-align: center;
+  padding: 20px;
+}
+
+.envelope-icon {
+  margin-bottom: 24px;
+}
+
+.progress-bar {
+  width: 200px;
+  height: 6px;
+  background: #e8ddd0;
+  border-radius: 3px;
+  margin: 0 auto 16px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, var(--altan-baraan), var(--altan-caiga));
+  border-radius: 3px;
+  animation: loadBar 2.5s ease-in-out forwards;
+}
+
+@keyframes loadBar {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+.splash-text {
+  font-family: "Noto Serif", Georgia, serif;
+  font-size: 15px;
+  color: var(--text-dond);
+}
+
+
+/* ===== ХУУДАС ШИЛЖИХ ХӨДӨЛГӨӨН ===== */
+.fade-in-page {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: fadeUp 0.7s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ===== ГОЛ ХЭСЭГ — ЗУРАГ БА ГАРЧИГ ===== */
+.hero-section {
+  text-align: center;
+  padding: 20px 0 10px;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-title {
+  font-family: "Lobster", cursive;
+  font-size: clamp(28px, 8vw, 36px);
+  font-weight: 700;
+  color: var(--altan-undsen);
+  line-height: 1.3;
+  margin-bottom: 20px;
+}
+
+.sub-line {
+  font-size: clamp(20px, 5vw, 24px);
+  color: var(--altan-baraan);
+  opacity: 0.85;
+}
+
+.hero-image {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(139, 115, 65, 0.15);
+}
+
+.child-photo {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.tavgiin-under-photo {
+  margin-top: 16px;
+}
+
+.tavgiin-under-img {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+}
+
+
+/* ===== ХЭСЭГ БҮРИЙН ҮНДСЭН ЗОХИОН БАЙГУУЛАЛТ ===== */
+.section {
+  padding: 28px 0;
+  position: relative;
+  z-index: 2;
+}
+
+.section-content {
+  text-align: center;
+  padding: 0 10px;
+}
+
+.sub-title {
+  font-family: "Noto Serif", Georgia, serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--altan-undsen);
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.poem p {
+  font-family: "Noto Serif", Georgia, serif;
+  font-size: 10px;
+  line-height: 1.4;
+  color: var(--text-baraan);
+  margin-bottom: 8px;
+}
+
+.invite-main {
+  font-family: "Noto Serif", Georgia, serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-dond);
+  margin-top: 12px;
+}
+
+/* Урилгын үг — чухал хэсгийг томруулах */
+.poem strong {
+  font-size: 1.1em;  /* ── 1 шат томруулсан */
+  font-weight: 700;   /* ── Тод үсэг */
+  color: #6b4400;    /* ── Хүрэн шаргал өнгө (илүү тод) */
+}
+
+/* Хэрэв .poem p-д үндсэн хэмжээ байвал энэ мэт: */
+.poem p {
+  font-size: 1rem;    /* ── Үндсэн хэмжээ */
+  margin: 0.6em 0;
+  line-height: 1.7;
+}
+
+
+/* ===== Хэзээ болох хэсэг — Алтан шаргал загвар ===== */
+.date-section {
+  text-align: center;
+}
+
+.calendar-container {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid #f0d890;
+  margin-bottom: 20px;
+}
+
+.calendar-header {
+  margin-bottom: 12px;
+}
+
+.calendar-month {
+  font-size: 16px;
+  font-weight: 600;
+  color: #8b6914;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.calendar-day-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: #b78920;
+  opacity: 0.7;
+  padding: 4px;
+}
+
+.calendar-day {
+  font-size: 14px;
+  color: #b78920;
+  padding: 8px 4px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.calendar-day.other-month {
+  color: #d4b86a;
+  opacity: 0.5;
+}
+
+.calendar-day.target-day {
+  background: linear-gradient(135deg, #b78920, #d4af37);
+  color: #fff;
+  font-weight: 700;
+}
+
+.date-blocks {
+  width: 100%;
+}
+
+.date-block {
+  white-space: nowrap;
+}
+
+.date-block .num {
+  display: inline;
+  font-size: 32px;
+  font-weight: 700;
+  color: #d4af37;
+  font-family: Georgia, serif;
+}
+
+.date-block .unit {
+  font-size: 14px;
+  color: #b78920;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.count-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 70px;
+}
+
+.count-num {
+  font-size: 32px;
+  font-weight: 700;
+  color: #d4af37;
+  font-family: Georgia, serif;
+  line-height: 1;
+}
+
+.count-label {
+  font-size: 14px;
+  color: #b78920;
+  margin-top: 4px;
+  display: block;
+  white-space: nowrap;
+}
+
+
+/* ===== ХАЯГ БАЙРШИЛ — Алтан шаргал дизайн ===== */
+.location-container {
+  text-align: center;
+  padding: 28px 20px;
+  background: #fffbf0;
+  border-radius: 24px;
+  border: 1px solid #f0d890;
+  margin: 0 auto;
+  max-width: 480px;
+}
+
+.location-container .sub-title {
+  color: #8b6914;
+  margin-bottom: 16px;
+  font-size: 18px;
+}
+
+.location-box {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid #f0d890;
+}
+
+.location-text {
+  color: #6b5210;
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.map-link {
+  display: inline-block;
+  background: linear-gradient(135deg, #b78920, #d4af37);
+  color: #ffffff !important;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.map-link:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(196, 152, 45, 0.3);
+}
+
+
+/* ===== МЭНДЧИЛГЭЭ — Алтан шаргал дизайн ===== */
+.greeting-container {
+  text-align: center;
+  padding: 28px 20px;
+  background: #fffbf0;
+  border-radius: 24px;
+  border: 1px solid #f0d890;
+  margin: 0 auto;
+  max-width: 480px;
+}
+
+.greeting-container .sub-title {
+  color: #8b6914;
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.greetings-box {
+  text-align: left;
+}
+
+.greeting-item {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin-bottom: 12px;
+  border: 1px solid #f0d890;
+}
+
+.greeting-text {
+  color: #3b362c;
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0 0 8px 0;
+  font-style: italic;
+}
+
+.greeting-meta {
+  color: #8b6914;
+  font-size: 13px;
+  text-align: right;
+  margin: 0;
+}
+
+.greeting-total {
+  color: #8b6914;
+  font-size: 14px;
+  margin: 12px 0;
+  text-align: center;
+}
+
+.greet-btn {
+  background: linear-gradient(135deg, #b78920, #d4af37);
+  color: #ffffff !important;
+  font-weight: 600;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 12px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.greet-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(196, 152, 45, 0.3);
+}
+
+/* Мэндчилгээний форм */
+.greet-form-box {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid #f0d890;
+  text-align: center;
+}
+
+.greet-form-box h4 {
+  color: #8b6914;
+  margin: 0 0 6px 0;
+  font-size: 16px;
+}
+
+.greet-form-box p {
+  color: #a08830;
+  margin: 0 0 16px 0;
+  font-size: 13px;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  border: 1px solid #e8c85c;
+  border-radius: 12px;
+  font-size: 15px;
+  font-family: inherit;
+  color: #3b362c;
+  background: #fffbf5;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: #c4982d;
+  box-shadow: 0 0 0 3px rgba(196, 152, 45, 0.15);
+}
+
+.form-textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.cancel-btn {
+  flex: 1;
+  background: #ffffff;
+  color: #8b6914;
+  border: 1px solid #d4af37;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cancel-btn:hover {
+  background: #fff3c8;
+}
+
+.send-btn {
+  flex: 1;
+  background: linear-gradient(135deg, #b78920, #d4af37);
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.send-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(196, 152, 45, 0.3);
+}
+
+
+/* ===== ИРЭХ ЭСЭХ БҮРТГЭЛ — Алтан шаргал дизайн ===== */
+.rsvp-container {
+  text-align: center;
+  padding: 28px 20px;
+  background: #fffbf0;
+  border-radius: 24px;
+  border: 1px solid #f0d890;
+  margin: 0 auto;
+  max-width: 480px;
+}
+
+.rsvp-question {
+  font-size: 15px;
+  color: #8b6914;
+  margin-bottom: 24px;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.rsvp-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.rsvp-option-btn {
+  background: #ffffff;
+  border: 1px solid #d4af37;
+  color: #b78920;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 12px 32px;
+  border-radius: 16px;
+  min-height: 48px;
+  min-width: 140px;
+  transition: all 0.25s ease;
+}
+
+.rsvp-option-btn:hover {
+  border-color: #c4982d;
+  background: #fff9e6;
+}
+
+.rsvp-option-btn.active {
+  background: #fff3c8;
+  border-color: #b78920;
+  color: #8b6914;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(196, 152, 45, 0.2);
+}
+
+.rsvp-form-box {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  margin-top: 16px;
+  box-shadow: 0 2px 8px rgba(196, 152, 45, 0.1);
+  text-align: center;
+  border: 1px solid #f0d890;
+}
+
+.form-label {
+  display: block;
+  text-align: left;
+  font-size: 14px;
+  color: #6b5210;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.required {
+  color: #dc2626;
+}
+
+.rsvp-input {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  border: 1px solid #e8c85c;
+  border-radius: 12px;
+  font-size: 15px;
+  font-family: inherit;
+  color: #3b362c;
+  background: #fffbf5;
+  min-height: 48px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.rsvp-input:focus {
+  outline: none;
+  border-color: #c4982d;
+  box-shadow: 0 0 0 3px rgba(196, 152, 45, 0.15);
+}
+
+.submit-btn {
+  background: linear-gradient(135deg, #b78920, #d4af37);
+  color: #fff;
+  font-weight: 600;
+  min-height: 48px;
+  padding: 12px 32px;
+  border-radius: 12px;
+  font-size: 15px;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.submit-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(196, 152, 45, 0.3);
+}
+
+
+/* ===== УТАСНЫ ДЭЛГЭЦЭНД ДАСАН ЗОХИЦОХ ===== */
+@media (max-width: 480px) {
+  .count-num {
+    font-size: 26px;
+  }
+  .count-item {
+    min-width: 60px;
+  }
+}
+/* ===== ЗУРАГИЙН СЛАЙДЕР — ТОГТСОН ХЭМЖЭЭТЭЙ ===== */
+.photo-slider-container {
+  width: 100%;
+  max-width: 600px;       /* ⬅️ Хамгийн их өргөн — хүссэн хэмжээгээрээ өөрчилж болно */
+  margin: 0 auto;
+  padding: 10px 0;
+}
+
+.slider-wrapper {
+  width: 100%;
+  height: 400px;          /* ⬅️ ТОГТСОН ӨНДӨР — бүх зураг ижил өндөртэй байна */
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  background-color: #f5efe0; /* Зургийн хоосон хэсгийн дэвсгэр өнгө */
+}
+
+.slider-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;      /* ⬅️ Зургийг хайчилж, дүүргэнэ — хэмжээ жигд, пропорц алдагдахгүй */
+  object-position: center;/* ⬅️ Зургийн гол хэсгийг харуулна */
+  transition: opacity 0.6s ease-in-out;
+}
+
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.slider-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #d4c8a8;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.slider-dot.active {
+  background-color: #967218;
+  transform: scale(1.3);
+}
