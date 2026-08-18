@@ -17,14 +17,14 @@ import pattern1 from './assets/pattern1.svg';
 
 
 // ===== ТОГТВОРТОЙ УТГА =====
-const FORM_ID = "1WMViVKJwoTGchiujZGN6scPGNHywRaRj3pTVvnpXjkw";
+const FORM_ID = "1FAIpQLScuh_lcMTotK92ElJiT6jxuUh_DAbvzFl5nBZwvyiY01YmYJA";
 const FIELDS = {
   name: "entry.1988160486",
   attending: "entry.1240697397"
 };
 
 // ⚠️ Зорилтот огноо
-const TARGET_DATE = new Date('2026-08-26T10:30:00+08:00');
+const TARGET_DATE = new Date('2026-08-26T10:00:00+08:00');
 
 // YouTube URL
 const YOUTUBE_BG_URL = "https://www.youtube.com/embed/45812_MJMWs?autoplay=1&mute=0&loop=1&playlist=45812_MJMWs";
