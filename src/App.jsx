@@ -326,7 +326,7 @@ const App = () => {
         <h3 className="sub-title">📅 Хэзээ болох</h3>
         <div className="date-blocks">
           <div className="date-block">
-            <h3>2026 оны 08 сарын <strong>26</strong>-ны 10:30 цагт</h3>
+            <h3>2026 оны 08 сарын <strong>26</strong>-ны 09:00 цагт (луу цаг)</h3>
           </div>
         </div>
         <div className="calendar-container">
