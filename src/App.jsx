@@ -3,13 +3,17 @@ import './App.css';
 
 
 // ✅ ЗУРАГУУД — ЗАМЫГ ЗӨВ БОЛГОСОН
-import huvguudZurag from './assets/huvguud-zurag.jpeg';
+import huvguudZurag from './assets/huvguud-zurag.png';
+import emegteiZurag from './assets/emegtei-zurag.png';
 import tavgiinIdee from './assets/tavgiin-idee.png';
-// ✅ СЛАЙДЕРИЙН ЗУРАГУУД — ЭНД ШИНЭ ЗУРАГУУДАА НЭМНЭ ҮҮ
+// ✅ СЛАЙДЕРИЙН ЗУРАГУУД
 import slide1 from './assets/slide1.jpg';
-import slide2 from './assets/slide2.jpeg';
+import slide2 from './assets/slide2.jpg';
 import slide3 from './assets/slide3.jpg';
-import slide4 from './assets/slide4.jpeg';
+import slide4 from './assets/slide4.jpg';
+import slide5 from './assets/slide5.jpg';
+import slide6 from './assets/slide6.jpg';
+import pattern1 from './assets/pattern1.svg';
 
 
 // ===== ТОГТВОРТОЙ УТГА =====
@@ -19,10 +23,10 @@ const FIELDS = {
   attending: "entry.1240697397"
 };
 
-// ⚠️ Зорилтот огноо — 2026 оны 8-р сарын 26, 10:30
+// ⚠️ Зорилтот огноо
 const TARGET_DATE = new Date('2026-08-26T10:30:00+08:00');
 
-// YouTube URL — Хөгжим
+// YouTube URL
 const YOUTUBE_BG_URL = "https://www.youtube.com/embed/45812_MJMWs?autoplay=1&mute=0&loop=1&playlist=45812_MJMWs";
 
 
@@ -41,30 +45,30 @@ const CornerKhee = ({ className = "", style = {} }) => (
 
 
 const App = () => {
-  // ===== БҮХ HOOK-УУДЫГ ЭХНД НЭГ ДУУДСАН =====
+  // ===== БҮХ HOOK-УУД =====
   const [isLoading, setIsLoading] = useState(true);
   const [musicStarted, setMusicStarted] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [muted, setMuted] = useState(false);
-
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, mins: 0, secs: 0 });
 
-  // ✅ СЛАЙДЕРИЙН ИНДЕКС
+  // ✅ ЗУРАГ СОЛИХ ИНДЕКС (ХОЁР ЗУРАГ)
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const [greetings, setGreetings] = useState([
     { name: 'Сараа', time: '2 өдрийн өмнө', text: 'Хүүд нь эрүүл энх, сайн сайхан бүхнийг хүсэн ерөөе.' },
     { name: 'Баяраа', time: '2 өдрийн өмнө', text: 'Мөнгөн толгойтой хүү болох нээ! Баяр хүргэе. Урт насалж, удаан жаргаарай.' },
+    { name: 'Оюунаа', time: '3 өдрийн өмнө', text: 'Нарансувд охиныхоо сэвлэгийг үргээх өдрөөр халуун ерөөл дэвшүүлье. Билэг оюунтай, эрдэм номтой болтугай!' },
+    { name: 'Түвшинбаяр', time: '1 өдрийн өмнө', text: 'Сод-Од, Нарансувд хоёртоо сайхан сайхан бүхнийг хүсье. Хоёулаа өлзий хийморьтой, аз завшаантай өсөж торныхыг ерөөе!' },
   ]);
   const [showForm, setShowForm] = useState(false);
   const [newName, setNewName] = useState('');
   const [newText, setNewText] = useState('');
-
   const [rsvp, setRsvp] = useState(null);
   const [rsvpName, setRsvpName] = useState('');
 
 
-  // ===== useCallback функцууд =====
+  // ===== useCallback =====
   const initMusic = useCallback(() => {
     const iframe = document.getElementById('bgMusicIframe');
     if (iframe && !iframe.src) {
@@ -86,12 +90,10 @@ const App = () => {
     e.preventDefault();
     const trimmedName = newName.trim();
     const trimmedText = newText.trim();
-
     if (!trimmedName || !trimmedText) {
       alert('Нэр болон мэндчилгээний үгээ бичнэ үү!');
       return;
     }
-
     setGreetings(prev => [{ name: trimmedName, time: 'Шинээр', text: trimmedText }, ...prev]);
     setNewName('');
     setNewText('');
@@ -102,25 +104,13 @@ const App = () => {
   const handleSubmitRsvp = useCallback(async (e) => {
     e.preventDefault();
     const trimmedName = rsvpName.trim();
-
-    if (!trimmedName) {
-      alert('⚠️ Эхлээд нэрээ оруулна уу!');
-      return;
-    }
-    if (!rsvp) {
-      alert('⚠️ Ирэх эсэхээ сонгоно уу!');
-      return;
-    }
-
+    if (!trimmedName) { alert('⚠️ Эхлээд нэрээ оруулна уу!'); return; }
+    if (!rsvp) { alert('⚠️ Ирэх эсэхээ сонгоно уу!'); return; }
     const formData = new FormData();
     formData.append(FIELDS.name, trimmedName);
     formData.append(FIELDS.attending, rsvp === 'yes' ? 'Тийм, ирнэ' : 'Ирэхгүй');
-
     try {
-      await fetch(
-        `https://docs.google.com/forms/d/e/${FORM_ID}/formResponse`,
-        { method: "POST", mode: "no-cors", body: formData }
-      );
+      await fetch(`https://docs.google.com/forms/d/e/${FORM_ID}/formResponse`, { method: "POST", mode: "no-cors", body: formData });
       alert(`✅ БҮРТГЭЛ АМЖИЛТТАЙ ИЛГЭЭГДЛЭЭ!\n\n📝 Нэр: ${trimmedName}\nИрэх: ${rsvp === 'yes' ? '✅ Тийм' : '❌ Үгүй'}\n\nБаярлалаа! 🙏`);
       setRsvp(null);
       setRsvpName('');
@@ -138,16 +128,14 @@ const App = () => {
     { v: String(timeLeft.secs).padStart(2, '0'), l: 'секунд' },
   ], [timeLeft]);
 
-  // ✅ СЛАЙДЕРИЙН ЗУРАГУУДИЙН ЖАГСААЛТ
-  const sliderImages = useMemo(() => [
-    slide1,
-    slide2,
-    slide3,
-    slide4,
-  ], []);
+  // ✅ Зургийн слайдер (6 зураг)
+  const sliderImages = useMemo(() => [slide1, slide2, slide3, slide4, slide5, slide6], []);
+
+  // ✅ Хоёр зураг солих (хүүхэд, эмэгтэй)
+  const images = useMemo(() => [huvguudZurag, emegteiZurag], []);
 
 
-  // ===== useEffect-үүд =====
+  // ===== useEffect =====
   useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 2500);
     return () => clearTimeout(timer);
@@ -161,24 +149,31 @@ const App = () => {
     }
   }, [isLoading, musicStarted, initMusic]);
 
-  // ✅ СЛАЙДЕР АВТОМАТААР СОЛИГДОХ
+  // ✅ ХОЁР ЗУРАГ СОЛИХ — 5 секунд тутамд
+  useEffect(() => {
+    const imgTimer = setInterval(() => {
+      setCurrentSlide(prev => (prev + 1) % images.length);
+    }, 5000);
+    return () => clearInterval(imgTimer);
+  }, [images.length]);
+
+  // ✅ ЗУРАГИЙН СЛАЙДЕР — 4 секунд тутамд
   useEffect(() => {
     const slideTimer = setInterval(() => {
       setCurrentSlide(prev => (prev + 1) % sliderImages.length);
-    }, 4000); // 4 секунд тутамд солигдоно
+    }, 4000);
     return () => clearInterval(slideTimer);
   }, [sliderImages.length]);
 
+  // Тооллогын цаг
   useEffect(() => {
     const timer = setInterval(() => {
       const now = new Date();
       const diff = TARGET_DATE - now;
-
       if (diff <= 0) {
         setTimeLeft({ days: 0, hours: 0, mins: 0, secs: 0 });
         return;
       }
-
       setTimeLeft({
         days: Math.floor(diff / (1000 * 60 * 60 * 24)),
         hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
@@ -186,7 +181,6 @@ const App = () => {
         secs: Math.floor((diff / 1000) % 60),
       });
     }, 1000);
-
     return () => clearInterval(timer);
   }, []);
 
@@ -208,10 +202,8 @@ const App = () => {
               <circle cx="50" cy="55" r="2.5" fill="#967218"/>
             </svg>
           </div>
-          <div className="progress-bar">
-            <div className="progress-fill"></div>
-          </div>
-          <p className="splash-text">Танд ирсэн Урилгыг нээж байна...</p>
+          <div className="progress-bar"><div className="progress-fill"></div></div>
+          <p className="splash-text">Сэвлэг үргээх ёслолын урилгыг дэлгэж байна..</p>
         </div>
       </div>
     );
@@ -223,21 +215,15 @@ const App = () => {
     <div className="app-container fade-in-page">
       {/* 4 Буланд хээ */}
       <CornerKhee className="top-left" />
-      <CornerKhee className="top-right" />
+      <CornerKhee className="top-right"/>
       <CornerKhee className="bottom-left" />
-      <CornerKhee className="bottom-right" />
+      <CornerKhee className="bottom-right"/>
 
       {/* Ард тоглох хөгжим */}
       <iframe
-        width="100%"
-        height="1"
-        title="Арын хөгжим"
-        frameBorder="0"
+        width="100%" height="1" title="Арын хөгжим" frameBorder="0"
         style={{ border: 'none', opacity: 0.01, position: 'absolute', top: '-9999px', left: '-9999px' }}
-        allow="autoplay; encrypted-media"
-        allowFullScreen
-        id="bgMusicIframe"
-        aria-hidden="true"
+        allow="autoplay; encrypted-media" allowFullScreen id="bgMusicIframe" aria-hidden="true"
       ></iframe>
 
       {/* Хөгжим товчлуур */}
@@ -248,120 +234,115 @@ const App = () => {
         type="button"
       >
         <span className="icon-main">{muted ? '🔇' : '🔊'}</span>
-        {isPlaying && !muted && (
-          <>
-            <span className="wave wave-1"></span>
-            <span className="wave wave-2"></span>
-            <span className="wave wave-3"></span>
-          </>
-        )}
+        {isPlaying && !muted && (<><span className="wave wave-1"></span><span className="wave wave-2"></span><span className="wave wave-3"></span></>)}
       </button>
 
-      {/* Гарчиг ба зураг */}
-      <section className="hero-section">
-        <div className="hero-content">
-          <h1 className="hero-title">
-            Урилга</h1>
-        </div>
 
+      {/* Гарчиг ба зураг */}
+      <section className="hero-section shimmer-wrapper"> 
+        {/* === ХОЁР ЗУРАГ СОЛИГДОХ ХЭСЭГ === */}
         <div className="hero-image">
           <img 
-            src={huvguudZurag} 
-            alt="Хүүхдийн зураг" 
-            className="child-photo"
+            key={currentSlide}
+            src={images[currentSlide]}
+            alt={currentSlide === 0 ? "Хүүхдийн зураг" : "Эмэгтэй зураг"}
+            className="child-photo animate-float-in"
             loading="lazy"
           />
+          <div className="shimmer-overlay"></div>
+
+          {/* Цэгүүд */}
+          <div style={{
+            position: 'absolute', bottom: '12px', left: '50%',
+            transform: 'translateX(-50%)', display: 'flex', gap: '10px', zIndex: 3
+          }}>
+            {images.map((_, i) => (
+              <span key={i} style={{
+                width: i === currentSlide ? '12px' : '8px',
+                height: i === currentSlide ? '12px' : '8px',
+                borderRadius: '50%',
+                background: i === currentSlide ? '#f9d71c' : 'rgba(255,255,255,0.5)',
+                transition: 'all 0.3s ease'
+              }} />
+            ))}
+          </div> 
         </div>
 
-        <div className="hero-content">
-          <h1 className="hero-title">
-            Сэвлэг үргээх<br />
-            <span className="sub-line">ёслол</span>
-          </h1>
-        </div>
-
-        <div className="tavgiin-under-photo">
-          <img 
-            src={tavgiinIdee} 
-            alt="Тавгийн идээ" 
-            className="tavgiin-under-img"
-            loading="lazy"
-          />
+        {/* Тавгийн идээ */}
+        <div className="tavgiin-under-photo shimmer-wrapper">
+          <img src={tavgiinIdee} alt="Тавгийн идээ" className="tavgiin-under-img animate-float-in" loading="lazy" />
+          <div className="shimmer-overlay"></div>
         </div>
       </section>
+
 
       {/* Урилгын үг */}
       <section className="section fade-in">
-        <div className="section-content">
-          <div className="poem">
-            <p>Цээлийн усыг цалгиаж, сэцэн хүү, охин төржээ,</p>
-            <p>Сэвлэг даахь нь ихдээд, сэлгэж үргээх боллоо.</p>
-            <p>Уран цагаан хайчаа, хадаг идээтэй бэлдлээ,</p>
-            <p>Өлзий дүүрэн ерөөлөөр ач, зээгийнхээ насыг мялаах боллоо.</p>
-            <br />
-            <p>Бид хайртай ач хүү <strong>С.Сод-Од</strong>,</p>
-            <p>болон хайртай зээ охин <strong>О.Нарансувд</strong></p>
-            <p>хоёрын <strong>сэвлэг үргээх ёслолыг</strong> гэрт минь хамтад нь тохиож байгаа тул,</p>
-            <p>та бүхнийг гэр бүлийн хамтаар хүрэлцэн ирж,</p>
-            <p><strong>Өлзийтэй сайхан ерөөлөө хайрлан,</strong></p>
-            <p><strong>Өсөх заяаг нь ерөөн,</strong></p>
-            <p><strong>Баяр хөөрөө</strong> бидэнтэй хуваалцахыг</p>
-            <p>чин сэтгэлээсээ <strong>урьж байна</strong>.</p>
-            <br />
-            <p><strong>Сод-Од</strong> ач хүү, <strong>Нарансувд</strong> зээ охины</p>
-            <p><strong>сэвлэг даахь нь үргэж,</strong></p>
-            <p><strong>Саруул ухаан нь тэлж,</strong></p>
-            <p><strong>Сайн үйлсээр зам нь дүүрч,</strong></p>
-            <p><strong>Сайхан заяа нь дэлгэрэх болтугай.</strong></p>
+        <div className="hero-text shimmer-wrapper">
+          <h1>Сэвлэг үргээх ёслолын<br />урилга</h1>
+          <div className="shimmer-overlay"></div>
+        </div>
+        <div className="invitation-text shimmer-wrapper">
+          <p>
+            Цээлийн усыг цалгиаж, сэцэн хүү, охин төржээ,<br />
+            Сэвлэг даахь нь ихдээд, сэлгэж үргээх цаг ирлээ.<br />
+            Уран цагаан хайчаа, хадаг идээгээр бэлдэж,<br />
+            Өлзий хийморийг нь дэлгэрүүлэн, ач зээгийнхээ авьяас заяаг мялаая.
+          </p>
+          <div className="divider-symbol">
+            <span className="divider-line"></span>
+            <img src={pattern1} alt="" className="divider-icon-svg" />
+            <span className="divider-line"></span>
           </div>
+          <p>
+            Бид хайртай ач хүү <strong>С.Сод-Од</strong>,<br />
+            хайртай зээ охин <strong>О.Нарансувд</strong> хоёрын<br />
+            сэвлэг үргээх ёслолыг эмээгийн гэрт хамтад нь тохиож байгаа тул,<br />
+            та бүхнийг гэр бүлийн хамтаар хүрэлцэн ирж,<br />
+            Ач, зээ хоёртоо хайр энэрлийн ерөөлөө өргөн,<br />
+            Тэдний өсөж торних заяанд ивээл хайрлаж,<br />
+            Энэ баярт мөчийг бидэнтэй хамт тэмдэглэхийг<br />
+            чин сэтгэлээсээ урьж байна.
+          </p>
+          <div className="divider-symbol">
+            <span className="divider-line"></span>
+            <img src={pattern1} alt="" className="divider-icon-svg" />
+            <span className="divider-line"></span>
+          </div>
+          <p>
+            Сод-Од ач хүү, Нарансувд зээ охины<br />
+            сэвлэг даахь нь арчигдаж,<br />
+            Билэг оюун нь тэлж,<br />
+            Буян хишиг нь арвижиж,<br />
+            Ирээдүй заяа нь өлзийтэй байх болтугай.
+          </p>
+          <div className="shimmer-overlay"></div>
         </div>
       </section>
+
 
       {/* Огноо — Календарь */}
       <section className="section date-section fade-in">
         <h3 className="sub-title">📅 Хэзээ болох</h3>
-
-        {/* ✅ Огноо, цаг — Монгол цагаар */}
         <div className="date-blocks">
           <div className="date-block">
-            2026 оны 08 сарын <strong>26</strong>-ны 10:30 цагт
+            <h3>2026 оны 08 сарын <strong>26</strong>-ны 10:30 цагт</h3>
           </div>
         </div>
-
         <div className="calendar-container">
-          <div className="calendar-header">
-            <span className="calendar-month">2026 оны 8-р сар</span>
-          </div>
+          <div className="calendar-header"><span className="calendar-month">2026 оны 8-р сар</span></div>
           <div className="calendar-grid">
-            {['Ня','Да','Мя','Лх','Ба','Бя','Дө'].map(d => (
-              <span key={d} className="calendar-day-name">{d}</span>
-            ))}
-
-            {[26,27,28,29,30,1,2].map((d,i) => (
-              <span key={`row1-${i}`} className={d>25?"calendar-day other-month":"calendar-day"}>{d}</span>
-            ))}
-            {[3,4,5,6,7,8,9].map(d => (
-              <span key={`row2-${d}`} className="calendar-day">{d}</span>
-            ))}
-            {[10,11,12,13,14,15,16].map(d => (
-              <span key={`row3-${d}`} className="calendar-day">{d}</span>
-            ))}
-            {[17,18,19,20,21,22,23].map(d => (
-              <span key={`row4-${d}`} className="calendar-day">{d}</span>
-            ))}
-            {[24,25].map(d => (
-              <span key={`row5-${d}`} className="calendar-day">{d}</span>
-            ))}
+            {['Ня','Да','Мя','Лх','Ба','Бя','Дө'].map(d => (<span key={d} className="calendar-day-name">{d}</span>))}
+            {[26,27,28,29,30,1,2].map((d,i) => (<span key={`row1-${i}`} className={d>25?"calendar-day other-month":"calendar-day"}>{d}</span>))}
+            {[3,4,5,6,7,8,9].map(d => (<span key={`row2-${d}`} className="calendar-day">{d}</span>))}
+            {[10,11,12,13,14,15,16].map(d => (<span key={`row3-${d}`} className="calendar-day">{d}</span>))}
+            {[17,18,19,20,21,22,23].map(d => (<span key={`row4-${d}`} className="calendar-day">{d}</span>))}
+            {[24,25].map(d => (<span key={`row5-${d}`} className="calendar-day">{d}</span>))}
             <span className="calendar-day target-day">26</span>
-            {[27,28,29,30].map(d => (
-              <span key={`row5b-${d}`} className="calendar-day">{d}</span>
-            ))}
-            {[31,1,2,3,4,5,6].map((d,i) => (
-              <span key={`row6-${i}`} className={d>25?"calendar-day":"calendar-day other-month"}>{d}</span>
-            ))}
+            {[27,28,29,30].map(d => (<span key={`row5b-${d}`} className="calendar-day">{d}</span>))}
+            {[31,1,2,3,4,5,6].map((d,i) => (<span key={`row6-${i}`} className={d>25?"calendar-day":"calendar-day other-month"}>{d}</span>))}
           </div>
         </div>
-
         <h3 className="sub-title">Үлдсэн хугацаа</h3>
         <div className="countdown">
           {countdownItems.map((item, i) => (
@@ -373,7 +354,8 @@ const App = () => {
         </div>
       </section>
 
-      {/* ✅ ЗУРАГИЙН СЛАЙДЕР — ТОГТСОН ХЭМЖЭЭТЭЙ */}
+
+      {/* Зургийн слайдер */}
       <section className="section fade-in">
         <div className="photo-slider-container">
           <div className="slider-wrapper">
@@ -384,7 +366,6 @@ const App = () => {
               loading="lazy"
             />
           </div>
-          {/* Доорх цэгүүд */}
           <div className="slider-dots">
             {sliderImages.map((_, i) => (
               <span
@@ -398,7 +379,8 @@ const App = () => {
         </div>
       </section>
 
-      {/* Хаяг-Байршил — Алтан шаргал дизайн */}
+
+      {/* Хаяг / Байршил */}
       <section className="section fade-in">
         <div className="location-container">
           <h3 className="sub-title">📍 Хаяг / Байршил</h3>
@@ -419,7 +401,8 @@ const App = () => {
         </div>
       </section>
 
-      {/* Мэндчилгээ — Алтан шаргал дизайн */}
+
+      {/* Мэндчилгээ */}
       <section className="section fade-in">
         <div className="greeting-container">
           <h3 className="sub-title">💛 Мэндчилгээ</h3>
@@ -427,21 +410,8 @@ const App = () => {
             <form className="greet-form-box" onSubmit={handleSendGreeting}>
               <h4 className="form-title">Танд зориулж мэндчилгээ үлдээнэ үү</h4>
               <p className="form-subtitle">Таны үгс хайртай хүмүүст хүрэх болно</p>
-              <input
-                type="text"
-                className="form-input"
-                placeholder="Таны нэр"
-                value={newName}
-                onChange={(e) => setNewName(e.target.value)}
-                autoComplete="name"
-              />
-              <textarea
-                className="form-textarea"
-                placeholder="Мэндчилгээний үг..."
-                value={newText}
-                onChange={(e) => setNewText(e.target.value)}
-                rows={4}
-              ></textarea>
+              <input type="text" className="form-input" placeholder="Таны нэр" value={newName} onChange={(e) => setNewName(e.target.value)} autoComplete="name" />
+              <textarea className="form-textarea" placeholder="Мэндчилгээний үг..." value={newText} onChange={(e) => setNewText(e.target.value)} rows={4}></textarea>
               <div className="form-buttons">
                 <button type="button" className="cancel-btn" onClick={() => setShowForm(false)}>Буцах</button>
                 <button type="submit" className="send-btn">Илгээх ✈️</button>
@@ -462,7 +432,8 @@ const App = () => {
         </div>
       </section>
 
-      {/* Ирэх эсэх бүртгэл — Алтан шаргал дизайн */}
+
+      {/* Ирэх эсэх бүртгэл */}
       <section className="section fade-in">
         <div className="rsvp-container">
           <h3 className="rsvp-question">
@@ -470,37 +441,19 @@ const App = () => {
             хүрэлцэн ирэх үү?
           </h3>
           <div className="rsvp-buttons">
-            <button
-              className={`rsvp-option-btn ${rsvp === 'yes' ? 'active' : ''}`}
-              onClick={() => setRsvp('yes')}
-              type="button"
-            >
-              Тийм
-            </button>
-            <button
-              className={`rsvp-option-btn ${rsvp === 'no' ? 'active' : ''}`}
-              onClick={() => setRsvp('no')}
-              type="button"
-            >
-              Үгүй
-            </button>
+            <button className={`rsvp-option-btn ${rsvp === 'yes' ? 'active' : ''}`} onClick={() => setRsvp('yes')} type="button">Тийм</button>
+            <button className={`rsvp-option-btn ${rsvp === 'no' ? 'active' : ''}`} onClick={() => setRsvp('no')} type="button">Үгүй</button>
           </div>
           {rsvp && (
             <form className="rsvp-form-box" onSubmit={handleSubmitRsvp}>
               <label className="form-label">Таны нэр <span className="required">*</span></label>
-              <input
-                type="text"
-                className="rsvp-input"
-                placeholder="Нэрээ оруулна уу"
-                value={rsvpName}
-                onChange={(e) => setRsvpName(e.target.value)}
-                autoComplete="name"
-              />
+              <input type="text" className="rsvp-input" placeholder="Нэрээ оруулна уу" value={rsvpName} onChange={(e) => setRsvpName(e.target.value)} autoComplete="name" />
               <button type="submit" className="submit-btn">Бүртгүүлэх</button>
             </form>
           )}
         </div>
       </section>
+
 
       {/* Зохион байгуулагч */}
       <section className="section fade-in">
@@ -509,24 +462,21 @@ const App = () => {
             <path d="M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z"></path>
             <path d="M5 21h14"></path>
           </svg>
-
           <div className="respect-lines">
             <span className="respect-line"></span>
             <h2 className="respect-text">Хүндэтгэсэн</h2>
             <span className="respect-line"></span>
           </div>
-
           <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#253813" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="crown-icon" aria-hidden="true">
             <path d="M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z"></path>
             <path d="M5 21h14"></path>
           </svg>
         </div>
-
         <h3 className="family-name">С.Сод-Од хүүгийн гэр бүл</h3>
         <h3 className="family-name">О.Нарансувд охины гэр бүл</h3>
       </section>
     </div>
   );
-}
+};
 
 export default App;
