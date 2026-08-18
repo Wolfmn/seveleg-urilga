@@ -17,10 +17,10 @@ import pattern1 from './assets/pattern1.svg';
 
 
 // ===== ТОГТВОРТОЙ УТГА =====
-const FORM_ID = "1FAIpQLScuh_lcMTotK92ElJiT6jxuUh_DAbvzFl5nBZwvyiY01YmYJA";
+const FORM_ID = "1FAIpQLScuh_lcMTotK92ElJiT6jxuUh_DAbvzFl5nBZwvyiY01YmYJA"; // Google Form ID
 const FIELDS = {
-  name: "entry.1988160486",
-  attending: "entry.1240697397"
+  name: "entry.746365638",
+  attending: "entry.499623538"
 };
 
 // ⚠️ Зорилтот огноо
