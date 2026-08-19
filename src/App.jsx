@@ -52,21 +52,11 @@ const App = () => {
   const [muted, setMuted] = useState(false);
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, mins: 0, secs: 0 });
 
-  // ✅ ЗУРАГ СОЛИХ ИНДЕКС (ХОЁР ЗУРАГ)
-  const [currentSlide, setCurrentSlide] = useState(0);
+  // ✅ Хоёр зураг солих (хүүхдийн зураг)
+  const [childSlide, setChildSlide] = useState(0);
 
-  const [greetings, setGreetings] = useState([
-    { name: 'Сараа', time: '2 өдрийн өмнө', text: 'Хүүд нь эрүүл энх, сайн сайхан бүхнийг хүсэн ерөөе.' },
-    { name: 'Баяраа', time: '2 өдрийн өмнө', text: 'Мөнгөн толгойтой хүү болох нээ! Баяр хүргэе. Урт насалж, удаан жаргаарай.' },
-    { name: 'Оюунаа', time: '3 өдрийн өмнө', text: 'Нарансувд охиныхоо сэвлэгийг үргээх өдрөөр халуун ерөөл дэвшүүлье. Билэг оюунтай, эрдэм номтой болтугай!' },
-    { name: 'Түвшинбаяр', time: '1 өдрийн өмнө', text: 'Сод-Од, Нарансувд хоёртоо сайхан сайхан бүхнийг хүсье. Хоёулаа өлзий хийморьтой, аз завшаантай өсөж торныхыг ерөөе!' },
-  ]);
-  const [showForm, setShowForm] = useState(false);
-  const [newName, setNewName] = useState('');
-  const [newText, setNewText] = useState('');
-  const [rsvp, setRsvp] = useState(null);
-  const [rsvpName, setRsvpName] = useState('');
-
+  // ✅ Том зургийн слайдер
+  const [sliderSlide, setSliderSlide] = useState(0);
 
   // ===== useCallback =====
   const initMusic = useCallback(() => {
@@ -85,21 +75,7 @@ const App = () => {
       iframe.src = iframe.src.replace(/mute=\d/, `mute=${newMuted ? 1 : 0}`);
     }
   }, [muted]);
-
-  const handleSendGreeting = useCallback((e) => {
-    e.preventDefault();
-    const trimmedName = newName.trim();
-    const trimmedText = newText.trim();
-    if (!trimmedName || !trimmedText) {
-      alert('Нэр болон мэндчилгээний үгээ бичнэ үү!');
-      return;
-    }
-    setGreetings(prev => [{ name: trimmedName, time: 'Шинээр', text: trimmedText }, ...prev]);
-    setNewName('');
-    setNewText('');
-    setShowForm(false);
-    alert('✅ Мэндчилгээ илгээгдлээ! Баярлалаа!');
-  }, [newName, newText]);
+  
 
   const handleSubmitRsvp = useCallback(async (e) => {
     e.preventDefault();
@@ -151,19 +127,18 @@ const App = () => {
 
   // ✅ ХОЁР ЗУРАГ СОЛИХ — 5 секунд тутамд
   useEffect(() => {
-    const imgTimer = setInterval(() => {
-      setCurrentSlide(prev => (prev + 1) % images.length);
-    }, 5000);
-    return () => clearInterval(imgTimer);
+  const imgTimer = setInterval(() => {
+    setChildSlide(prev => (prev + 1) % images.length);
+  }, 5000);
+  return () => clearInterval(imgTimer);
   }, [images.length]);
 
-  // ✅ ЗУРАГИЙН СЛАЙДЕР — 4 секунд тутамд
   useEffect(() => {
-    const slideTimer = setInterval(() => {
-      setCurrentSlide(prev => (prev + 1) % sliderImages.length);
-    }, 4000);
-    return () => clearInterval(slideTimer);
-  }, [sliderImages.length]);
+  const slideTimer = setInterval(() => {
+    setSliderSlide(prev => (prev + 1) % sliderImages.length);
+  }, 4000);
+  return () => clearInterval(slideTimer);
+}, [sliderImages.length]);
 
   // Тооллогын цаг
   useEffect(() => {
@@ -243,9 +218,9 @@ const App = () => {
         {/* === ХОЁР ЗУРАГ СОЛИГДОХ ХЭСЭГ === */}
         <div className="hero-image">
           <img 
-            key={currentSlide}
-            src={images[currentSlide]}
-            alt={currentSlide === 0 ? "Хүүхдийн зураг" : "Эмэгтэй зураг"}
+            key={childSlide}
+            src={images[childSlide]}
+            alt={childSlide === 0 ? "Хүүхдийн зураг" : "Эмэгтэй зураг"}
             className="child-photo animate-float-in"
             loading="lazy"
           />
@@ -258,10 +233,10 @@ const App = () => {
           }}>
             {images.map((_, i) => (
               <span key={i} style={{
-                width: i === currentSlide ? '12px' : '8px',
-                height: i === currentSlide ? '12px' : '8px',
+                width: i === childSlide ? '12px' : '8px',
+                height: i === childSlide ? '12px' : '8px',
                 borderRadius: '50%',
-                background: i === currentSlide ? '#f9d71c' : 'rgba(255,255,255,0.5)',
+                background: i === childSlide ? '#f9d71c' : 'rgba(255,255,255,0.5)',
                 transition: 'all 0.3s ease'
               }} />
             ))}
@@ -360,8 +335,8 @@ const App = () => {
         <div className="photo-slider-container">
           <div className="slider-wrapper">
             <img
-              src={sliderImages[currentSlide]}
-              alt={`Зураг ${currentSlide + 1}`}
+              src={sliderImages[sliderSlide]}
+              alt={`Зураг ${sliderSlide + 1}`}
               className="slider-image"
               loading="lazy"
             />
@@ -370,8 +345,8 @@ const App = () => {
             {sliderImages.map((_, i) => (
               <span
                 key={i}
-                className={`slider-dot ${i === currentSlide ? 'active' : ''}`}
-                onClick={() => setCurrentSlide(i)}
+                className={`slider-dot ${i === sliderSlide ? 'active' : ''}`}
+                onClick={() => setSliderSlide(i)}
                 aria-label={`Зураг ${i + 1}`}
               ></span>
             ))}
@@ -400,37 +375,7 @@ const App = () => {
           </div>
         </div>
       </section>
-
-
-      {/* Мэндчилгээ */}
-      <section className="section fade-in">
-        <div className="greeting-container">
-          <h3 className="sub-title">💛 Мэндчилгээ</h3>
-          {showForm ? (
-            <form className="greet-form-box" onSubmit={handleSendGreeting}>
-              <h4 className="form-title">Танд зориулж мэндчилгээ үлдээнэ үү</h4>
-              <p className="form-subtitle">Таны үгс хайртай хүмүүст хүрэх болно</p>
-              <input type="text" className="form-input" placeholder="Таны нэр" value={newName} onChange={(e) => setNewName(e.target.value)} autoComplete="name" />
-              <textarea className="form-textarea" placeholder="Мэндчилгээний үг..." value={newText} onChange={(e) => setNewText(e.target.value)} rows={4}></textarea>
-              <div className="form-buttons">
-                <button type="button" className="cancel-btn" onClick={() => setShowForm(false)}>Буцах</button>
-                <button type="submit" className="send-btn">Илгээх ✈️</button>
-              </div>
-            </form>
-          ) : (
-            <div className="greetings-box">
-              {greetings.map((g, i) => (
-                <div className="greeting-item" key={i}>
-                  <p className="greeting-text">"{g.text}"</p>
-                  <p className="greeting-meta">{g.name} — {g.time}</p>
-                </div>
-              ))}
-              <p className="greeting-total">Нийт {greetings.length} мэндчилгээ</p>
-              <button className="greet-btn" onClick={() => setShowForm(true)}>Мэндчилгээ үлдээх</button>
-            </div>
-          )}
-        </div>
-      </section>
+     
 
 
       {/* Ирэх эсэх бүртгэл */}
