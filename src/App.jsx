@@ -299,19 +299,21 @@ const App = () => {
       </section>
 
 
-            {/* Огноо — Календарь */}
+       {/* Огноо — Шинэ загвар / Календарьгүй */}
       <section className="section date-section fade-in">
         <h3 className="sub-title">📅 Хэзээ болох</h3>
-        <div className="date-blocks">
-          <div className="date-block">
-            <h3>
-              2026 оны 08 сарын<br />
-              <strong>26</strong>-ны өдрийн<br />
-              <strong>10:00</strong> цагт
-            </h3>
+        
+        <div className="date-info-box">
+          <div className="date-main">
+            2026 оны 08 сарын<br />
+            <strong>26</strong>-ны өдрийн<br />
+            <strong>10:00</strong> цагт
           </div>
         </div>        
-        <h3 className="sub-title">Үлдсэн хугацаа</h3>
+
+        <div className="date-divider-line"></div>
+
+        <span className="countdown-label">Үлдсэн хугацаа</span>
         <div className="countdown">
           {countdownItems.map((item, i) => (
             <div className="count-item" key={i}>

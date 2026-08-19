@@ -1,14 +1,13 @@
 /* ======================================================
-   ✅ БҮРЭН CSS — БҮГДИЙГ НЭГТГЭСЭН / БҮХ ХЭСЭГ БАГТСАН
+   ✅ БҮРЭН CSS — ХАМГИЙН СҮҮЛИЙН ХУВИЛБАР
+   Календарь устсан / Огноо дизайн нэгжилсэн
    ====================================================== */
 
-/* ===== GOOGLE FONTS — ЗӨВ АЖИЛЛАХ БАЙДЛААР ===== */
+/* ===== GOOGLE FONTS ===== */
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap');
-/* Хэрэглэх үед: "Noto Serif", "Lobster" */
 
-
-/* ===== БҮХИЙЛЭН ТОГТООГДСОН ӨНГӨНИЙ СИСТЕМ ===== */
+/* ===== ӨНГӨНИЙ СИСТЕМ ===== */
 :root {
   --altan-undsen: #c4982d;
   --altan-baraan: #b78920;
@@ -24,8 +23,7 @@
   --focus-ring: 2px solid var(--altan-undsen);
 }
 
-
-/* ===== БАРУУН ТАЛЫН SCROLL БҮРЭН АЛГА БОЛГОХ ===== */
+/* ===== ҮНДСЭН ТОХИРГОО ===== */
 html,
 body {
   margin: 0;
@@ -53,7 +51,7 @@ body {
   outline-offset: 2px;
 }
 
-/* Scroll-ыг багасгах */
+/* Scroll багасгах */
 ::-webkit-scrollbar {
   width: 4px;
 }
@@ -65,7 +63,6 @@ body {
   border-radius: 2px;
 }
 
-
 .app-container {
   max-width: 640px;
   margin: 0 auto;
@@ -75,7 +72,6 @@ body {
   width: 100%;
   box-sizing: border-box;
 }
-
 
 /* ===== ХҮНДЭТГЭСЭН ХЭСЭГ ===== */
 .respect-wrapper {
@@ -123,7 +119,6 @@ body {
   margin-top: 8px;
 }
 
-
 /* ===== 4 БУЛАНД ХЭЭ ===== */
 .corner-khee {
   position: absolute;
@@ -156,56 +151,7 @@ body {
   transform: rotate(90deg);
 }
 
-
-/* ===== ХЭЭТЭЙ ЧИМЭГЛЭЛ — Section бүрт ===== */
-.pattern-divider {
-  display: block;
-  max-width: 280px;
-  width: 70%;
-  height: auto;
-  margin: 0 auto 16px;
-  opacity: 0.65;
-}
-
-.pattern-top,
-.pattern-bottom {
-  display: block;
-  max-width: 140px;
-  width: 35%;
-  height: auto;
-  opacity: 0.35;
-}
-
-.pattern-top {
-  margin: 0 auto 10px;
-}
-
-.pattern-bottom {
-  margin: 10px auto 0;
-}
-
-@keyframes gentleRotate {
-  0% { transform: rotate(-3deg); }
-  50% { transform: rotate(3deg); }
-  100% { transform: rotate(-3deg); }
-}
-
-@keyframes gentleRotateRev {
-  0% { transform: rotate(3deg); }
-  50% { transform: rotate(-3deg); }
-  100% { transform: rotate(3deg); }
-}
-
-.rotate-pattern {
-  animation: gentleRotate 8s ease-in-out infinite;
-}
-
-.rotate-pattern-rev {
-  animation: gentleRotateRev 8s ease-in-out infinite;
-}
-
-
-/* ===== ХӨГЖИМ ТОВЧЛУУР — Алтан шаргал дизайн ===== */
+/* ===== ХӨГЖИМ ТОВЧЛУУР ===== */
 .floating-music-btn {
   position: fixed;
   bottom: 24px;
@@ -239,7 +185,6 @@ body {
   color: #ffffff;
 }
 
-/* Дууны долгион — Алтан өнгө */
 .floating-music-btn .wave {
   position: absolute;
   width: 4px;
@@ -280,8 +225,7 @@ body {
   z-index: 1;
 }
 
-
-/* ===== НЭЭЛТИЙН ДЭЛГЭЦ — Захиа задрах хөдөлгөөнт ===== */
+/* ===== НЭЭЛТИЙН ДЭЛГЭЦ — Захиа задрах ===== */
 .splash-screen {
   position: fixed;
   inset: 0;
@@ -418,7 +362,6 @@ body {
   100% { opacity: 1; transform: translateY(0); }
 }
 
-
 /* ===== ХУУДАС ШИЛЖИХ ХӨДӨЛГӨӨН ===== */
 .fade-in-page {
   animation: fadeIn 0.8s ease-out forwards;
@@ -441,7 +384,6 @@ body {
     transform: translateY(0);
   }
 }
-
 
 /* ===== ГОЛ ХЭСЭГ — ЗУРАГ БА ГАРЧИГ ===== */
 .hero-section {
@@ -482,7 +424,7 @@ body {
   opacity: 0.85;
 }
 
-/* Хүүхдийн зураг хайрцаг */
+/* Хүүхдийн зураг */
 .hero-image {
   display: flex;
   align-items: center;
@@ -506,15 +448,6 @@ body {
   display: block;
 }
 
-@keyframes floatIn {
-  from { opacity: 0; transform: scale(0.92) translateY(15px); }
-  to   { opacity: 1; transform: scale(1) translateY(0); }
-}
-.animate-float-in {
-  animation: floatIn 0.7s ease-out forwards;
-}
-
-/* Шимжих гялалзах эффект */
 .shimmer-wrapper {
   position: relative;
   display: inline-block;
@@ -567,32 +500,19 @@ body {
 }
 
 @keyframes glowPulse {
-  0%, 100% {
-    filter: drop-shadow(0 0 8px rgba(255, 215, 130, 0.4));
-  }
-  50% {
-    filter: drop-shadow(0 0 20px rgba(255, 215, 130, 0.75));
-  }
+  0%, 100% { filter: drop-shadow(0 0 8px rgba(255, 215, 130, 0.4)); }
+  50% { filter: drop-shadow(0 0 20px rgba(255, 215, 130, 0.75)); }
 }
 
 @keyframes fadeInScale {
-  0% {
-    opacity: 0;
-    transform: scale(0.85) translateY(20px);
-    filter: blur(4px);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-    filter: blur(0);
-  }
+  0% { opacity: 0; transform: scale(0.85) translateY(20px); filter: blur(4px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
 }
 
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
 }
-
 
 /* ===== ХЭСЭГ БҮРИЙН ҮНДСЭН ЗОХИОН БАЙГУУЛАЛТ ===== */
 .section {
@@ -638,7 +558,7 @@ body {
   margin-top: 12px;
 }
 
-/* Тусгаарлагч шугам ба тэмдэг */
+/* Тусгаарлагч */
 .divider-symbol {
   display: flex;
   align-items: center;
@@ -686,121 +606,74 @@ body {
 }
 
 @keyframes iconPulse {
-  0%, 100% {
-    transform: scale(1) rotate(0deg);
-    filter: drop-shadow(0 0 4px rgba(184, 134, 11, 0.4));
-  }
-  50% {
-    transform: scale(1.15) rotate(8deg);
-    filter: drop-shadow(0 0 12px rgba(184, 134, 11, 0.75));
-  }
+  0%, 100% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 4px rgba(184, 134, 11, 0.4)); }
+  50% { transform: scale(1.15) rotate(8deg); filter: drop-shadow(0 0 12px rgba(184, 134, 11, 0.75)); }
 }
 
-
-/* ===== ОГНОО — ТОД, ГОЁ ХЭСЭГ ===== */
+/* ===== ОГНОО — Хаягтай ИЖИЛ ЗАГВАР / КАЛЕНДАРЬГҮЙ ===== */
 .date-section {
   text-align: center;
+  padding: 28px 20px;
+  background: #fffbf0;
+  border-radius: 24px;
+  border: 1px solid #f0d890;
+  margin: 0 auto;
+  max-width: 480px;
 }
 
-.date-blocks {
-  position: relative;
-  z-index: 2;
+.date-section .sub-title {
+  color: #8b6914;
+  margin-bottom: 16px;
+  font-size: 18px;
 }
 
-.date-block {
-  display: inline-block;
-  background: linear-gradient(135deg, #f9d71c 0%, #d4a500 100%);
-  color: #4a3500;
-  padding: 28px 45px;
+.date-info-box {
+  background: #ffffff;
   border-radius: 16px;
-  box-shadow: 
-    0 6px 20px rgba(212, 165, 0, 0.4),
-    inset 0 2px 0 rgba(255,255,255,0.35);
-  border: 3px solid #b8860b;
-  transform: scale(1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 24px;
+  border: 1px solid #f0d890;
+  margin-bottom: 20px;
 }
 
-.date-block:hover {
-  transform: scale(1.03);
-  box-shadow: 
-    0 10px 30px rgba(212, 165, 0, 0.5),
-    inset 0 2px 0 rgba(255,255,255,0.35);
-}
-
-.date-block h3 {
-  margin: 0;
-  font-size: 26px;
+.date-main {
+  font-family: "Noto Serif", Georgia, serif;
+  font-size: 32px;
   font-weight: 700;
-  line-height: 1.5;
+  color: #b78920;
+  line-height: 1.3;
   letter-spacing: 0.05em;
 }
 
-.date-block h3 strong {
-  font-size: 38px;
-  display: inline-block;
-  padding: 0 8px;
-  color: #5c4000;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+.date-sub {
+  font-family: "Noto Serif", Georgia, serif;
+  font-size: 15px;
+  color: #6b5210;
+  margin-top: 8px;
+  line-height: 1.6;
 }
 
-/* Календарь */
-.calendar-container {
-  background: #fff;
+.date-divider-line {
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #e2c040, transparent);
+  margin: 16px auto;
+}
+
+.countdown-wrapper {
+  background: #ffffff;
   border-radius: 16px;
   padding: 20px;
   border: 1px solid #f0d890;
-  margin: 25px auto;
-  max-width: 360px;
 }
 
-.calendar-header {
-  margin-bottom: 12px;
-  text-align: center;
-}
-
-.calendar-month {
-  font-size: 16px;
-  font-weight: 600;
-  color: #8b6914;
-}
-
-.calendar-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 6px;
-  text-align: center;
-}
-
-.calendar-day-name {
-  font-size: 12px;
-  font-weight: 600;
-  color: #b78920;
-  opacity: 0.7;
-  padding: 4px;
-}
-
-.calendar-day {
+.countdown-label {
   font-size: 14px;
-  color: #b78920;
-  padding: 8px 4px;
-  border-radius: 50%;
-  transition: all 0.2s ease;
+  color: #8b6914;
+  margin-bottom: 12px;
+  display: block;
+  letter-spacing: 0.05em;
 }
 
-.calendar-day.other-month {
-  color: #d4b86a;
-  opacity: 0.5;
-}
-
-.calendar-day.target-day {
-  background: linear-gradient(135deg, #b78920, #d4af37);
-  color: #fff;
-  font-weight: 700;
-  box-shadow: 0 0 12px rgba(217,165,0,0.5);
-}
-
-/* Тооллого */
 .countdown {
   display: flex;
   justify-content: center;
@@ -809,81 +682,28 @@ body {
 }
 
 .count-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  background: #fffbf5;
+  border: 1px solid #e8c85c;
+  border-radius: 12px;
+  padding: 12px 14px;
   min-width: 70px;
+  text-align: center;
 }
 
 .count-num {
-  font-size: 32px;
+  font-family: "Noto Serif", Georgia, serif;
+  font-size: 28px;
   font-weight: 700;
-  color: #d4af37;
-  font-family: Georgia, serif;
+  color: #b78920;
   line-height: 1;
 }
 
 .count-label {
-  font-size: 14px;
-  color: #b78920;
+  font-size: 12px;
+  color: #8b6914;
   margin-top: 4px;
   display: block;
-  white-space: nowrap;
 }
-
-
-/* ===== ЗУРАГИЙН СЛАЙДЕР ===== */
-.photo-slider-container {
-  width: 100%;
-  max-width: 500px;
-  margin: 32px auto;
-}
-
-.slider-wrapper {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-}
-
-.slider-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-  animation: fadeSwap 0.6s ease;
-}
-
-@keyframes fadeSwap {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-.slider-dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 12px;
-}
-
-.slider-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #ccc;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.slider-dot.active {
-  background: #b8860b;
-  width: 20px;
-  border-radius: 4px;
-}
-
 
 /* ===== ХАЯГ БАЙРШИЛ ===== */
 .location-container {
@@ -932,8 +752,7 @@ body {
   box-shadow: 0 4px 12px rgba(196, 152, 45, 0.3);
 }
 
-
-/* ===== ИРЭХ ЭСЭХ БҮРТГЭЛ ===== */
+/* ===== БҮРТГЭЛ — Хүрэлцэн ирэх үү? ===== */
 .rsvp-container {
   text-align: center;
   padding: 28px 20px;
@@ -1047,8 +866,7 @@ body {
   box-shadow: 0 4px 12px rgba(196, 152, 45, 0.3);
 }
 
-
-/* ===== ХАЖУУГИЙН ЧИМЭГЛЭЛ ЗУРАГ ===== */
+/* ===== ХАЖУУГИЙН ЧИМЭГЛЭЛ ===== */
 .side-pattern-left {
   position: fixed;
   top: 50%;
@@ -1067,21 +885,16 @@ body {
   to   { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-/* Хэрэглэгчийн motion тохиргоог хүндэтгэх */
 @media (prefers-reduced-motion: reduce) {
-  .side-pattern-left {
-    animation: none;
-  }
+  .side-pattern-left { animation: none; }
 }
 
-
-/* ===== УТАСНЫ ДЭЛГЭЦЭНД ДАСАН ЗОХИЦОХ ===== */
+/* ===== УТАСНЫ ДЭЛГЭЦ ===== */
 @media (max-width: 480px) {
   .hero-text h1 { font-size: 24px; }
-  .count-num { font-size: 26px; }
-  .count-item { min-width: 60px; }
-  .date-block h3 { font-size: 20px; }
-  .date-block h3 strong { font-size: 30px; }
+  .date-main { font-size: 24px; }
+  .count-item { min-width: 60px; padding: 10px 12px; }
+  .count-num { font-size: 22px; }
   .rsvp-option-btn { padding: 10px 25px; font-size: 16px; }
   .side-pattern-left { width: 160px; }
 }
