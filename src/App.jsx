@@ -17,6 +17,7 @@ import pattern1 from './assets/pattern1.svg';
 
 
 // ===== ТОГТВОРТОЙ УТГА =====
+// ⚠️ Google Forms ID-г шалгана уу — холбоос шалгах үед алдаа өгч байна
 const FORM_ID = "1FAIpQLScuh_lcMTotK92ElJiT6jxuUh_DAbvzFl5nBZwvyiY01YmYJA";
 const FIELDS = {
   name: "entry.746365638",
@@ -26,7 +27,7 @@ const FIELDS = {
 // ✅ Огноо, цаг
 const TARGET_DATE = new Date('2026-08-26T10:00:00+08:00');
 
-// ✅ YouTube — Error 153 зассан (mute=1)
+// ✅ YouTube — autoplay параметрийг нэмсэн (mute=1 шаардлагатай)
 const YOUTUBE_BG_URL = "https://www.youtube.com/embed/45812_MJMWs?autoplay=1&mute=1&loop=1&playlist=45812_MJMWs";
 
 
@@ -58,7 +59,7 @@ const App = () => {
   // ✅ Том зургийн слайдер
   const [sliderSlide, setSliderSlide] = useState(0);
 
-  // ✅ БҮРТГЭЛИЙН ХУВЬСАГЧ — ДУТАЖ БАЙСАН НЬ ЭНД НЭГЖ БАЙНА
+  // ✅ БҮРТГЭЛИЙН ХУВЬСАГЧ
   const [rsvp, setRsvp] = useState(null);
   const [rsvpName, setRsvpName] = useState('');
 
@@ -91,7 +92,11 @@ const App = () => {
     formData.append(FIELDS.name, trimmedName);
     formData.append(FIELDS.attending, rsvp === 'yes' ? 'Тийм, ирнэ' : 'Ирэхгүй');
     try {
-      await fetch(`https://docs.google.com/forms/d/e/${FORM_ID}/formResponse`, { method: "POST", mode: "no-cors", body: formData });
+      await fetch(`https://docs.google.com/forms/d/e/${FORM_ID}/formResponse`, { 
+        method: "POST", 
+        mode: "no-cors", 
+        body: formData 
+      });
       alert(`✅ БҮРТГЭЛ АМЖИЛТТАЙ ИЛГЭЭГДЛЭЭ!\n\n📝 Нэр: ${trimmedName}\nИрэх: ${rsvp === 'yes' ? '✅ Тийм' : '❌ Үгүй'}\n\nБаярлалаа! 🙏`);
       setRsvp(null);
       setRsvpName('');
@@ -166,7 +171,7 @@ const App = () => {
   }, []);
 
 
-    // ===== АЧААЛАХ ДЭЛГЭЦ — ✅ ЗАХИАА ЗАДРАХ ХӨДӨЛГӨӨНТЭЙ =====
+  // ===== АЧААЛАХ ДЭЛГЭЦ — ✅ ЗАХИАА ЗАДРАХ ХӨДӨЛГӨӨНТЭЙ =====
   if (isLoading) {
     return (
       <div className="splash-screen">
@@ -299,7 +304,7 @@ const App = () => {
       </section>
 
 
-       {/* Огноо — Шинэ загвар / Календарьгүй */}
+      {/* Огноо — Шинэ загвар / Календарьгүй */}
       <section className="section date-section fade-in">
         <h3 className="sub-title">📅 Хэзээ болох</h3>
         
