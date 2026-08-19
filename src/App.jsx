@@ -17,17 +17,17 @@ import pattern1 from './assets/pattern1.svg';
 
 
 // ===== ТОГТВОРТОЙ УТГА =====
-const FORM_ID = "1FAIpQLScuh_lcMTotK92ElJiT6jxuUh_DAbvzFl5nBZwvyiY01YmYJA"; // Google Form ID
+const FORM_ID = "1FAIpQLScuh_lcMTotK92ElJiT6jxuUh_DAbvzFl5nBZwvyiY01YmYJA";
 const FIELDS = {
   name: "entry.746365638",
   attending: "entry.499623538"
 };
 
-// ⚠️ Зорилтот огноо
+// ✅ Огноо, цаг
 const TARGET_DATE = new Date('2026-08-26T10:00:00+08:00');
 
-// YouTube URL
-const YOUTUBE_BG_URL = "https://www.youtube.com/embed/45812_MJMWs?autoplay=1&mute=0&loop=1&playlist=45812_MJMWs";
+// ✅ YouTube — Error 153 зассан (mute=1)
+const YOUTUBE_BG_URL = "https://www.youtube.com/embed/45812_MJMWs?autoplay=1&mute=1&loop=1&playlist=45812_MJMWs";
 
 
 // Булгийн хээ SVG
@@ -57,6 +57,11 @@ const App = () => {
 
   // ✅ Том зургийн слайдер
   const [sliderSlide, setSliderSlide] = useState(0);
+
+  // ✅ БҮРТГЭЛИЙН ХУВЬСАГЧ — ДУТАЖ БАЙСАН НЬ ЭНД НЭГЖ БАЙНА
+  const [rsvp, setRsvp] = useState(null);
+  const [rsvpName, setRsvpName] = useState('');
+
 
   // ===== useCallback =====
   const initMusic = useCallback(() => {
@@ -127,18 +132,19 @@ const App = () => {
 
   // ✅ ХОЁР ЗУРАГ СОЛИХ — 5 секунд тутамд
   useEffect(() => {
-  const imgTimer = setInterval(() => {
-    setChildSlide(prev => (prev + 1) % images.length);
-  }, 5000);
-  return () => clearInterval(imgTimer);
+    const imgTimer = setInterval(() => {
+      setChildSlide(prev => (prev + 1) % images.length);
+    }, 5000);
+    return () => clearInterval(imgTimer);
   }, [images.length]);
 
+  // ✅ ЗУРАГИЙН СЛАЙДЕР — 4 секунд тутамд
   useEffect(() => {
-  const slideTimer = setInterval(() => {
-    setSliderSlide(prev => (prev + 1) % sliderImages.length);
-  }, 4000);
-  return () => clearInterval(slideTimer);
-}, [sliderImages.length]);
+    const slideTimer = setInterval(() => {
+      setSliderSlide(prev => (prev + 1) % sliderImages.length);
+    }, 4000);
+    return () => clearInterval(slideTimer);
+  }, [sliderImages.length]);
 
   // Тооллогын цаг
   useEffect(() => {
