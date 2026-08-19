@@ -20,8 +20,8 @@ import pattern1 from './assets/pattern1.svg';
 // ⚠️ Google Forms ID-г шалгана уу — холбоос шалгах үед алдаа өгч байна
 const FORM_ID = "1FAIpQLScuh_lcMTotK92ElJiT6jxuUh_DAbvzFl5nBZwvyiY01YmYJA";
 const FIELDS = {
-  name: "entry.746365638",
-  attending: "entry.499623538"
+  name: "entry.746356538",
+  attending: "entry.499625358"
 };
 
 // ✅ Огноо, цаг
@@ -97,7 +97,7 @@ const App = () => {
         mode: "no-cors", 
         body: formData 
       });
-      alert(`✅ БҮРТГЭЛ АМЖИЛТТАЙ ИЛГЭЭГДЛЭЭ!\n\n📝 Нэр: ${trimmedName}\nИрэх: ${rsvp === 'yes' ? '✅ Тийм' : '❌ Үгүй'}\n\nБаярлалаа! 🙏`);
+      alert(`✅ БҮРТГЭЛ АМЖИЛТТАЙ ИЛГЭЭГДЛЭЭ!\n\n📝 Нэр: ${trimmedName}\nИрэх: ${rsvp === 'yes' ? 'Тийм' : 'Үгүй'}\n\nБаярлалаа! 🙏`);
       setRsvp(null);
       setRsvpName('');
     } catch (err) {
