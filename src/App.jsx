@@ -28,7 +28,7 @@ const FIELDS = {
 const TARGET_DATE = new Date('2026-08-26T10:00:00+08:00');
 
 // ✅ YouTube — autoplay параметрийг нэмсэн (mute=1 шаардлагатай)
-const YOUTUBE_BG_URL = "https://www.youtube.com/embed/45812_MJMWs?autoplay=1&mute=1&loop=1&playlist=45812_MJMWs";
+const YOUTUBE_BG_URL = "https://www.youtube.com/embed/45812_MJMWs?autoplay=1&mute=0&loop=1&playlist=45812_MJMWs";
 
 
 // Булгийн хээ SVG
