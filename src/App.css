@@ -1,6 +1,6 @@
 /* ======================================================
    ✅ БҮРЭН CSS — ХАМГИЙН СҮҮЛИЙН ХУВИЛБАР
-   Календарь устсан / Огноо дизайн нэгжилсэн
+   Календарь устсан / Огноо дизайн нэгжилсэн / Зургийн хэмжээ зассан
    ====================================================== */
 
 /* ===== GOOGLE FONTS ===== */
@@ -424,13 +424,27 @@ body {
   opacity: 0.85;
 }
 
-
+/* Зургийн хайрцаг — Хэмжээ зассан */
+.hero-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 4 / 5;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff8e8;
+  box-shadow: 0 4px 16px rgba(180, 134, 11, 0.15);
+}
 
 .child-photo {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Зургийг муруйхгүй, дүүргэх */
-  object-position: center; /* Төв хэсгийг харуулах */
+  object-fit: cover;
+  object-position: center;
   display: block;
 }
 
@@ -876,7 +890,7 @@ body {
   .side-pattern-left { animation: none; }
 }
 
-/* ===== УТАСНЫ ДЭЛГЭЦ ===== */
+/* ===== УТАСНЫ ДЭЛГЭЦ — БҮГД НЭГТГЭСЭН ===== */
 @media (max-width: 480px) {
   .hero-text h1 { font-size: 24px; }
   .date-main { font-size: 24px; }
@@ -884,24 +898,11 @@ body {
   .count-num { font-size: 22px; }
   .rsvp-option-btn { padding: 10px 25px; font-size: 16px; }
   .side-pattern-left { width: 160px; }
-}
-
-/* === Утасны дэлгэцэнд дасан зохицох === */
-@media (max-width: 480px) {
-  .hero-image {
-    max-width: 300px;
-    aspect-ratio: 4 / 5;
-  }
-  .shimmer-wrapper {
-    max-width: 300px;
-  }
+  .hero-image { max-width: 300px; aspect-ratio: 4 / 5; }
+  .shimmer-wrapper { max-width: 300px; }
 }
 
 @media (max-width: 360px) {
-  .hero-image {
-    max-width: 260px;
-  }
-  .shimmer-wrapper {
-    max-width: 260px;
-  }
+  .hero-image { max-width: 260px; }
+  .shimmer-wrapper { max-width: 260px; }
 }
