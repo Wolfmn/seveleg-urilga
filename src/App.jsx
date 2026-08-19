@@ -166,25 +166,22 @@ const App = () => {
   }, []);
 
 
-  // ===== АЧААЛАХ ДЭЛГЭЦ =====
+    // ===== АЧААЛАХ ДЭЛГЭЦ — ✅ ЗАХИАА ЗАДРАХ ХӨДӨЛГӨӨНТЭЙ =====
   if (isLoading) {
     return (
       <div className="splash-screen">
         <div className="splash-content">
-          <div className="envelope-icon">
-            <svg width="100" height="80" viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect x="10" y="25" width="80" height="45" rx="4" fill="#967218"/>
-              <rect x="25" y="10" width="50" height="30" rx="2" fill="#f5efe0"/>
-              <line x1="35" y1="20" x2="65" y2="20" stroke="#d4c8a8" strokeWidth="2"/>
-              <line x1="35" y1="28" x2="60" y2="28" stroke="#d4c8a8" strokeWidth="2"/>
-              <line x1="35" y1="36" x2="55" y2="36" stroke="#d4c8a8" strokeWidth="2"/>
-              <path d="M50 55 C45 50, 38 48, 35 55 L50 65 L65 55 C62 48, 55 50, 50 55 Z" fill="#b8860b"/>
-              <circle cx="50" cy="55" r="6" fill="#f5efe0" stroke="#967218" strokeWidth="2"/>
-              <circle cx="50" cy="55" r="2.5" fill="#967218"/>
-            </svg>
+          {/* ✅ Захиа задрах хэсэг */}
+          <div className="envelope-wrapper">
+            <div className="envelope-flap"></div>
+            <div className="envelope-seal"></div>
+            <div className="envelope-base"></div>
+            <div className="envelope-letter">
+              Сэвлэг үргээх ёслолын<br/>урилга
+            </div>
           </div>
           <div className="progress-bar"><div className="progress-fill"></div></div>
-          <p className="splash-text">Сэвлэг үргээх ёслолын урилгыг дэлгэж байна..</p>
+          <p className="splash-text">Урилгыг нээж байна...</p>
         </div>
       </div>
     );
@@ -302,14 +299,19 @@ const App = () => {
       </section>
 
 
-      {/* Огноо — Календарь */}
+            {/* Огноо — Календарь */}
       <section className="section date-section fade-in">
         <h3 className="sub-title">📅 Хэзээ болох</h3>
         <div className="date-blocks">
           <div className="date-block">
-            <h3>2026 оны 08 сарын <strong>26</strong>-ны 10:00 цагт</h3>
+            <h3>
+              2026 оны 08 сарын<br />
+              <strong>26</strong>-ны өдрийн<br />
+              <strong>10:00</strong> цагт
+            </h3>
           </div>
         </div>
+        {/* — Календарь хэсэг хэвээрээ — */}
         <div className="calendar-container">
           <div className="calendar-header"><span className="calendar-month">2026 оны 8-р сар</span></div>
           <div className="calendar-grid">

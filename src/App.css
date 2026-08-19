@@ -1,7 +1,11 @@
-/* ===== GOOGLE FONTS — ЗАСАГДСАН ===== */
+/* ======================================================
+   ✅ БҮРЭН CSS — БҮГДИЙГ НЭГТГЭСЭН / БҮХ ХЭСЭГ БАГТСАН
+   ====================================================== */
+
+/* ===== GOOGLE FONTS — ЗӨВ АЖИЛЛАХ БАЙДЛААР ===== */
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap');
-/* Хэрэглэх үед: "Noto Serif" */
+/* Хэрэглэх үед: "Noto Serif", "Lobster" */
 
 
 /* ===== БҮХИЙЛЭН ТОГТООГДСОН ӨНГӨНИЙ СИСТЕМ ===== */
@@ -29,7 +33,7 @@ body {
   width: 100%;
   overflow-x: hidden;
   overflow-y: auto;
-  font-family: "Noto Serif", Georgia, "Helvetica Neue", sans-serif;
+  font-family: "Noto Serif", Georgia, "Helvetica Neue", serif;
   background: var(--devsge-undsen);
   color: var(--text-baraan);
   font-weight: 450;
@@ -277,7 +281,7 @@ body {
 }
 
 
-/* ===== НЭЭЛТИЙН ДЭЛГЭЦ ===== */
+/* ===== НЭЭЛТИЙН ДЭЛГЭЦ — Захиа задрах хөдөлгөөнт ===== */
 .splash-screen {
   position: fixed;
   inset: 0;
@@ -293,8 +297,90 @@ body {
   padding: 20px;
 }
 
-.envelope-icon {
-  margin-bottom: 24px;
+.envelope-wrapper {
+  position: relative;
+  width: 220px;
+  height: 160px;
+  margin: 0 auto 30px;
+  perspective: 1000px;
+}
+.envelope-base {
+  position: absolute;
+  bottom: 0;
+  width: 220px;
+  height: 140px;
+  background: linear-gradient(135deg, #f0e6cc 0%, #e2d0a0 100%);
+  border-radius: 8px;
+  border: 2px solid #c8a951;
+  box-shadow: 0 8px 30px rgba(139,105,20,0.25);
+  z-index: 2;
+}
+.envelope-flap {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  width: 220px;
+  height: 90px;
+  background: linear-gradient(180deg, #e8d69c 0%, #d4b860 100%);
+  clip-path: polygon(0 0, 50% 0, 100% 0, 100% 35%, 50% 90%, 0 35%);
+  transform-origin: top center;
+  transform: rotateX(0deg);
+  animation: flapOpen 2.5s ease-out forwards;
+  z-index: 3;
+}
+.envelope-letter {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%) translateY(30px);
+  width: 170px;
+  height: 110px;
+  background: #fffbf0;
+  border: 1px solid #d4c088;
+  border-radius: 4px;
+  animation: letterUp 2.5s ease-out forwards;
+  opacity: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #8b6912;
+  padding: 10px;
+  text-align: center;
+  line-height: 1.5;
+}
+.envelope-seal {
+  position: absolute;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle, #f9d71c 0%, #d4a500 100%);
+  border-radius: 50%;
+  z-index: 4;
+  animation: sealFade 2.5s ease-out forwards;
+}
+@keyframes flapOpen {
+  0%   { transform: rotateX(0deg); }
+  20%  { transform: rotateX(0deg); }
+  40%  { transform: rotateX(-120deg); }
+  70%  { transform: rotateX(-150deg); }
+  100% { transform: rotateX(-155deg); }
+}
+@keyframes letterUp {
+  0%   { opacity: 0; transform: translateX(-50%) translateY(30px); }
+  30%  { opacity: 0; }
+  60%  { opacity: 1; transform: translateX(-50%) translateY(-10px); }
+  80%  { opacity: 1; transform: translateX(-50%) translateY(-5px); }
+  100% { opacity: 1; transform: translateX(-50%) translateY(-5px); }
+}
+@keyframes sealFade {
+  0%   { opacity: 1; }
+  35%  { opacity: 1; transform: translateX(-50%) translateY(0); }
+  50%  { opacity: 0; transform: translateX(-50%) translateY(-30px); }
+  100% { opacity: 0; }
 }
 
 .progress-bar {
@@ -323,6 +409,13 @@ body {
   font-family: "Noto Serif", Georgia, serif;
   font-size: 15px;
   color: var(--text-dond);
+  margin-top: 15px;
+  opacity: 0;
+  animation: fadeInText 1s ease-out 1.5s forwards;
+}
+@keyframes fadeInText {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 
@@ -356,13 +449,31 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px; /* Зураг хоорондын зай */
+  gap: 24px;
 }
 
-.hero-title {
-  margin: 0 auto;
-  display: block;
-  max-width: 100%;
+.hero-text {
+  font-family: 'Mongolian Baiti', 'Noto Sans Mongolian', 'Lobster', cursive;
+  position: relative;
+  margin: 0 auto 45px;
+  width: 100%;
+  text-align: center;
+  padding: 0;
+  z-index: 2;
+}
+
+.hero-text h1 {
+  background: linear-gradient(180deg, #f9d71c 0%, #f5b800 50%, #d49e00 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 1.3;
+  filter: drop-shadow(0 2px 4px rgba(180, 134, 11, 0.6));
+  margin: 0;
 }
 
 .sub-line {
@@ -370,6 +481,118 @@ body {
   color: var(--altan-baraan);
   opacity: 0.85;
 }
+
+/* Хүүхдийн зураг хайрцаг */
+.hero-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 4 / 5;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff8e8;
+  box-shadow: 0 4px 16px rgba(180, 134, 11, 0.15);
+}
+
+.child-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}
+
+@keyframes floatIn {
+  from { opacity: 0; transform: scale(0.92) translateY(15px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+.animate-float-in {
+  animation: floatIn 0.7s ease-out forwards;
+}
+
+/* Шимжих гялалзах эффект */
+.shimmer-wrapper {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.shimmer-overlay {
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.55) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-20deg);
+  animation: shimmerMove 3.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmerMove {
+  0% { left: -150%; }
+  50% { left: 150%; }
+  100% { left: 150%; }
+}
+
+/* Тавгийн идээ */
+.tavgiin-under-photo {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.tavgiin-under-img {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(0 0 12px rgba(255, 215, 130, 0.5));
+  animation: 
+    fadeInScale 1.2s ease-out forwards,
+    float 4s ease-in-out infinite 1.2s,
+    glowPulse 2.8s ease-in-out infinite 1.2s;
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(255, 215, 130, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(255, 215, 130, 0.75));
+  }
+}
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.85) translateY(20px);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
 
 /* ===== ХЭСЭГ БҮРИЙН ҮНДСЭН ЗОХИОН БАЙГУУЛАЛТ ===== */
 .section {
@@ -395,10 +618,16 @@ body {
 
 .poem p {
   font-family: "Noto Serif", Georgia, serif;
-  font-size: 10px;
-  line-height: 1.4;
+  font-size: 1rem;
+  line-height: 1.7;
   color: var(--text-baraan);
-  margin-bottom: 8px;
+  margin: 0.6em 0;
+}
+
+.poem strong {
+  font-size: 1.1em;
+  font-weight: 700;
+  color: #6b4400;
 }
 
 .invite-main {
@@ -409,36 +638,125 @@ body {
   margin-top: 12px;
 }
 
-/* Урилгын үг — чухал хэсгийг томруулах */
-.poem strong {
-  font-size: 1.1em;  /* ── 1 шат томруулсан */
-  font-weight: 700;   /* ── Тод үсэг */
-  color: #6b4400;    /* ── Хүрэн шаргал өнгө (илүү тод) */
+/* Тусгаарлагч шугам ба тэмдэг */
+.divider-symbol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 65%;
+  margin: 32px auto;
+  gap: 16px;
 }
 
-/* Хэрэв .poem p-д үндсэн хэмжээ байвал энэ мэт: */
-.poem p {
-  font-size: 1rem;    /* ── Үндсэн хэмжээ */
-  margin: 0.6em 0;
-  line-height: 1.7;
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #b8860b 70%);
+  position: relative;
+  overflow: hidden;
+}
+
+.divider-line:last-child {
+  background: linear-gradient(90deg, #b8860b 30%, transparent);
+}
+
+.divider-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  filter: blur(1px);
+  animation: lineShimmer 3s ease-in-out infinite;
+}
+
+@keyframes lineShimmer {
+  0%, 100% { left: -30%; opacity: 0; }
+  50% { left: 100%; opacity: 1; }
+}
+
+.divider-icon-svg {
+  width: 28px;
+  height: auto;
+  display: inline-block;
+  filter: drop-shadow(0 0 6px rgba(184, 134, 11, 0.5));
+  animation: iconPulse 2.8s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    filter: drop-shadow(0 0 4px rgba(184, 134, 11, 0.4));
+  }
+  50% {
+    transform: scale(1.15) rotate(8deg);
+    filter: drop-shadow(0 0 12px rgba(184, 134, 11, 0.75));
+  }
 }
 
 
-/* ===== Хэзээ болох хэсэг — Алтан шаргал загвар ===== */
+/* ===== ОГНОО — ТОД, ГОЁ ХЭСЭГ ===== */
 .date-section {
   text-align: center;
 }
 
+.date-blocks {
+  position: relative;
+  z-index: 2;
+}
+
+.date-block {
+  display: inline-block;
+  background: linear-gradient(135deg, #f9d71c 0%, #d4a500 100%);
+  color: #4a3500;
+  padding: 28px 45px;
+  border-radius: 16px;
+  box-shadow: 
+    0 6px 20px rgba(212, 165, 0, 0.4),
+    inset 0 2px 0 rgba(255,255,255,0.35);
+  border: 3px solid #b8860b;
+  transform: scale(1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.date-block:hover {
+  transform: scale(1.03);
+  box-shadow: 
+    0 10px 30px rgba(212, 165, 0, 0.5),
+    inset 0 2px 0 rgba(255,255,255,0.35);
+}
+
+.date-block h3 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.05em;
+}
+
+.date-block h3 strong {
+  font-size: 38px;
+  display: inline-block;
+  padding: 0 8px;
+  color: #5c4000;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Календарь */
 .calendar-container {
   background: #fff;
   border-radius: 16px;
   padding: 20px;
   border: 1px solid #f0d890;
-  margin-bottom: 20px;
+  margin: 25px auto;
+  max-width: 360px;
 }
 
 .calendar-header {
   margin-bottom: 12px;
+  text-align: center;
 }
 
 .calendar-month {
@@ -451,6 +769,7 @@ body {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 6px;
+  text-align: center;
 }
 
 .calendar-day-name {
@@ -478,29 +797,10 @@ body {
   background: linear-gradient(135deg, #b78920, #d4af37);
   color: #fff;
   font-weight: 700;
+  box-shadow: 0 0 12px rgba(217,165,0,0.5);
 }
 
-.date-blocks {
-  width: 100%;
-}
-
-.date-block {
-  white-space: nowrap;
-}
-
-.date-block .num {
-  display: inline;
-  font-size: 32px;
-  font-weight: 700;
-  color: #d4af37;
-  font-family: Georgia, serif;
-}
-
-.date-block .unit {
-  font-size: 14px;
-  color: #b78920;
-}
-
+/* Тооллого */
 .countdown {
   display: flex;
   justify-content: center;
@@ -532,7 +832,60 @@ body {
 }
 
 
-/* ===== ХАЯГ БАЙРШИЛ — Алтан шаргал дизайн ===== */
+/* ===== ЗУРАГИЙН СЛАЙДЕР ===== */
+.photo-slider-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 32px auto;
+}
+
+.slider-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.slider-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  animation: fadeSwap 0.6s ease;
+}
+
+@keyframes fadeSwap {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.slider-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ccc;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.slider-dot.active {
+  background: #b8860b;
+  width: 20px;
+  border-radius: 4px;
+}
+
+
+/* ===== ХАЯГ БАЙРШИЛ ===== */
 .location-container {
   text-align: center;
   padding: 28px 20px;
@@ -580,164 +933,7 @@ body {
 }
 
 
-/* ===== МЭНДЧИЛГЭЭ — Алтан шаргал дизайн ===== */
-.greeting-container {
-  text-align: center;
-  padding: 28px 20px;
-  background: #fffbf0;
-  border-radius: 24px;
-  border: 1px solid #f0d890;
-  margin: 0 auto;
-  max-width: 480px;
-}
-
-.greeting-container .sub-title {
-  color: #8b6914;
-  margin-bottom: 20px;
-  font-size: 18px;
-}
-
-.greetings-box {
-  text-align: left;
-}
-
-.greeting-item {
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 16px 18px;
-  margin-bottom: 12px;
-  border: 1px solid #f0d890;
-}
-
-.greeting-text {
-  color: #3b362c;
-  font-size: 15px;
-  line-height: 1.6;
-  margin: 0 0 8px 0;
-  font-style: italic;
-}
-
-.greeting-meta {
-  color: #8b6914;
-  font-size: 13px;
-  text-align: right;
-  margin: 0;
-}
-
-.greeting-total {
-  color: #8b6914;
-  font-size: 14px;
-  margin: 12px 0;
-  text-align: center;
-}
-
-.greet-btn {
-  background: linear-gradient(135deg, #b78920, #d4af37);
-  color: #ffffff !important;
-  font-weight: 600;
-  border: none;
-  padding: 12px 32px;
-  border-radius: 12px;
-  font-size: 15px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  width: 100%;
-}
-
-.greet-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(196, 152, 45, 0.3);
-}
-
-/* Мэндчилгээний форм */
-.greet-form-box {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 24px;
-  border: 1px solid #f0d890;
-  text-align: center;
-}
-
-.greet-form-box h4 {
-  color: #8b6914;
-  margin: 0 0 6px 0;
-  font-size: 16px;
-}
-
-.greet-form-box p {
-  color: #a08830;
-  margin: 0 0 16px 0;
-  font-size: 13px;
-}
-
-.form-input,
-.form-textarea {
-  width: 100%;
-  padding: 12px 14px;
-  margin-bottom: 12px;
-  border: 1px solid #e8c85c;
-  border-radius: 12px;
-  font-size: 15px;
-  font-family: inherit;
-  color: #3b362c;
-  background: #fffbf5;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-.form-input:focus,
-.form-textarea:focus {
-  outline: none;
-  border-color: #c4982d;
-  box-shadow: 0 0 0 3px rgba(196, 152, 45, 0.15);
-}
-
-.form-textarea {
-  min-height: 100px;
-  resize: vertical;
-}
-
-.form-buttons {
-  display: flex;
-  gap: 12px;
-  margin-top: 4px;
-}
-
-.cancel-btn {
-  flex: 1;
-  background: #ffffff;
-  color: #8b6914;
-  border: 1px solid #d4af37;
-  padding: 12px;
-  border-radius: 12px;
-  font-size: 15px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.cancel-btn:hover {
-  background: #fff3c8;
-}
-
-.send-btn {
-  flex: 1;
-  background: linear-gradient(135deg, #b78920, #d4af37);
-  color: #fff;
-  border: none;
-  padding: 12px;
-  border-radius: 12px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.send-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(196, 152, 45, 0.3);
-}
-
-
-/* ===== ИРЭХ ЭСЭХ БҮРТГЭЛ — Алтан шаргал дизайн ===== */
+/* ===== ИРЭХ ЭСЭХ БҮРТГЭЛ ===== */
 .rsvp-container {
   text-align: center;
   padding: 28px 20px;
@@ -842,6 +1038,7 @@ body {
   border-radius: 12px;
   font-size: 15px;
   border: none;
+  cursor: pointer;
   transition: all 0.2s ease;
 }
 
@@ -851,200 +1048,7 @@ body {
 }
 
 
-/* ===== УТАСНЫ ДЭЛГЭЦЭНД ДАСАН ЗОХИЦОХ ===== */
-@media (max-width: 480px) {
-  .count-num {
-    font-size: 26px;
-  }
-  .count-item {
-    min-width: 60px;
-  }
-}
-.photo-slider-container {
-  width: 100%;
-  max-width: 500px;
-  margin: 32px auto;
-}
-
-.slider-wrapper {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 4 / 5;       /* бүх зургийг ижил хэмжээ, харьцаагаар харуулна */
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-}
-
-.slider-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;         /* зургийг тасалж, хайрцганд бүрэн дүүргэнэ, харьцаа алдагдахгүй */
-  object-position: center;
-  animation: fadeSwap 0.6s ease;
-}
-
-@keyframes fadeSwap {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-.slider-dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 12px;
-}
-
-.slider-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #ccc;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.slider-dot.active {
-  background: #b8860b;
-  width: 20px;
-  border-radius: 4px;
-}
-
-.divider-pattern {
-  display: block;
-  width: 60px;      /* хэрэгцээндээ тааруулж өөрчилнө */
-  height: auto;
-  margin: 24px auto;
-  opacity: 0.85;      /* хэрэв SVG хэт тод бол багасгаж болно */
-}
-
-.shimmer-wrapper {
-  position: relative;
-  display: inline-block;
-  overflow: hidden;
-  border-radius: 12px; /* таны одоогийн дизайнд тааруулж болно */
-}
-
-/* Зурган доторх туяа гүйх эффект */
-.shimmer-overlay {
-  position: absolute;
-  top: 0;
-  left: -150%;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(
-    120deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.55) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  transform: skewX(-20deg);
-  animation: shimmerMove 3.5s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes shimmerMove {
-  0% { left: -150%; }
-  50% { left: 150%; }
-  100% { left: 150%; }
-}
-
-/* Зургийг тойрсон зөөлөн гэрэлтэх сүүдэр */
-.tavgiin-under-img {
-  filter: drop-shadow(0 0 12px rgba(255, 215, 130, 0.5));
-  animation: 
-    fadeInScale 1.2s ease-out forwards,
-    float 4s ease-in-out infinite 1.2s,
-    glowPulse 2.8s ease-in-out infinite 1.2s;
-}
-
-@keyframes glowPulse {
-  0%, 100% {
-    filter: drop-shadow(0 0 8px rgba(255, 215, 130, 0.4));
-  }
-  50% {
-    filter: drop-shadow(0 0 20px rgba(255, 215, 130, 0.75));
-  }
-}
-
-/* Өмнөх fade+float animation хэвээрээ */
-@keyframes fadeInScale {
-  0% {
-    opacity: 0;
-    transform: scale(0.85) translateY(20px);
-    filter: blur(4px);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-    filter: blur(0);
-  }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-}
-
-.divider-symbol {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 65%;
-  margin: 32px auto;
-  gap: 16px;
-}
-
-.divider-line {
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #b8860b 70%);
-  position: relative;
-  overflow: hidden;
-}
-
-.divider-line:last-child {
-  background: linear-gradient(90deg, #b8860b 30%, transparent);
-}
-
-/* Шугам дээгүүр гялалзах гэрэл гүйх */
-.divider-line::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 30%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.9);
-  filter: blur(1px);
-  animation: lineShimmer 3s ease-in-out infinite;
-}
-
-@keyframes lineShimmer {
-  0%, 100% { left: -30%; opacity: 0; }
-  50% { left: 100%; opacity: 1; }
-}
-
-/* SVG тэмдэг */
-.divider-icon-svg {
-  width: 28px;
-  height: auto;
-  display: inline-block;
-  filter: drop-shadow(0 0 6px rgba(184, 134, 11, 0.5));
-  animation: iconPulse 2.8s ease-in-out infinite;
-}
-
-@keyframes iconPulse {
-  0%, 100% {
-    transform: scale(1) rotate(0deg);
-    filter: drop-shadow(0 0 4px rgba(184, 134, 11, 0.4));
-  }
-  50% {
-    transform: scale(1.15) rotate(8deg);
-    filter: drop-shadow(0 0 12px rgba(184, 134, 11, 0.75));
-  }
-}
-
+/* ===== ХАЖУУГИЙН ЧИМЭГЛЭЛ ЗУРАГ ===== */
 .side-pattern-left {
   position: fixed;
   top: 50%;
@@ -1052,7 +1056,7 @@ body {
   width: 260px;
   height: auto;
   transform: translate(-50%, -50%);
-  opacity: 0.5;              /* SVG өөрөө 0.32 opacity-тэй тул арай нэмж тохируулсан */
+  opacity: 0.5;
   pointer-events: none;
   z-index: 0;
   animation: slowSpin 50s linear infinite;
@@ -1063,13 +1067,6 @@ body {
   to   { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-/* Жижиг дэлгэцэд багасгах */
-@media (max-width: 600px) {
-  .side-pattern-left {
-    width: 160px;
-  }
-}
-
 /* Хэрэглэгчийн motion тохиргоог хүндэтгэх */
 @media (prefers-reduced-motion: reduce) {
   .side-pattern-left {
@@ -1077,125 +1074,14 @@ body {
   }
 }
 
-.hero-fullscreen {
-  position: relative;
-  width: 100%;
-  height: 100vh;           /* бүтэн дэлгэцийн өндөр */
-  overflow: hidden;
-}
 
-.hero-fullscreen-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;       /* зургийг тасалж, дэлгэцийг бүрэн дүүргэнэ, харьцаа алдагдахгүй */
-  object-position: center;
-  display: block;
-}
-
-.hero-gradient-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 60%;              /* доод хагасаас арай илүү хэсэгт нөлөөлнө, шаардлагаар өөрчилж болно */
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.75) 0%,
-    rgba(0, 0, 0, 0.4) 40%,
-    rgba(0, 0, 0, 0) 100%
-  );
-  pointer-events: none;
-}
-
-.hero-text {
-  /* === Фонт: Монгол эхлээд, Lobster нэмэлт === */
-  font-family: 'Mongolian Baiti', 'Noto Sans Mongolian', 'Lobster', cursive;
-
-  position: relative;
-  margin: 0 auto 45px; /* ← Гарчиг доош зай */
-  left: 0;
-  width: 100%;
-  text-align: center;
-  padding: 0;
-  z-index: 2;
-}
-
-.hero-text h1 {
-  /* === Алтан шаргал градиент === */
-  background: linear-gradient(180deg, #f9d71c 0%, #f5b800 50%, #d49e00 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-
-  font-size: 36px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  line-height: 1.3; /* Мөр хоорондын зай */
-
-  /* === Тод, зөөлөн сүүдэр === */
-  filter: drop-shadow(0 2px 4px rgba(180, 134, 11, 0.6));
-  margin: 0;
-}
-
-/* === Гар утасны хэмжээ === */
+/* ===== УТАСНЫ ДЭЛГЭЦЭНД ДАСАН ЗОХИЦОХ ===== */
 @media (max-width: 480px) {
-  .hero-text h1 {
-    font-size: 24px;
-  }
-}
-
-/* === Хүүхдийн зураг хайрцаг === */
-.hero-image {
-  display: flex;
-  align-items: center;
-  justify-content: center; /* ✅ Төвд байрлуулах */
-  position: relative;
-  width: 100%;
-  max-width: 320px;
-  aspect-ratio: 4 / 5;
-  margin: 0 auto; /* ✅ Бүхэлд нь төвд */
-  border-radius: 12px;
-  overflow: hidden;
-  background: #fff8e8; /* ✅ Алтан шаргал цайвар фон */
-  box-shadow: 0 4px 16px rgba(180, 134, 11, 0.15); /* ✅ Алтан сүүдэр */
-}
-
-/* === Хүүхдийн зураг === */
-.child-photo {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center; /* ✅ Зургийг өөрөө төвд */
-  display: block;
-}
-
-/* === Градиент давхраа === */
-.shimmer-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 2;
-  /* ✅ Алтан шаргал градиент давхраа */
-  background: linear-gradient(to top, rgba(254,243,199,0.6), transparent);
-}
-
-/* === Тавгийн идээ хайрцаг === */
-.tavgiin-under-photo {
-  margin-top: 24px;
-  display: flex;
-  justify-content: center; /* ✅ Төвд байрлуулах */
-  width: 100%;
-}
-
-/* === Тавгийн идээ зураг === */
-.tavgiin-under-img {
-  width: 100%;
-  max-width: 180px;
-  height: auto;
-  display: block;
-  margin: 0 auto; /* ✅ Баталгаатай төвд */
+  .hero-text h1 { font-size: 24px; }
+  .count-num { font-size: 26px; }
+  .count-item { min-width: 60px; }
+  .date-block h3 { font-size: 20px; }
+  .date-block h3 strong { font-size: 30px; }
+  .rsvp-option-btn { padding: 10px 25px; font-size: 16px; }
+  .side-pattern-left { width: 160px; }
 }
