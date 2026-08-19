@@ -310,22 +310,7 @@ const App = () => {
               <strong>10:00</strong> цагт
             </h3>
           </div>
-        </div>
-        {/* — Календарь хэсэг хэвээрээ — */}
-        <div className="calendar-container">
-          <div className="calendar-header"><span className="calendar-month">2026 оны 8-р сар</span></div>
-          <div className="calendar-grid">
-            {['Ня','Да','Мя','Лх','Ба','Бя','Дө'].map(d => (<span key={d} className="calendar-day-name">{d}</span>))}
-            {[26,27,28,29,30,1,2].map((d,i) => (<span key={`row1-${i}`} className={d>25?"calendar-day other-month":"calendar-day"}>{d}</span>))}
-            {[3,4,5,6,7,8,9].map(d => (<span key={`row2-${d}`} className="calendar-day">{d}</span>))}
-            {[10,11,12,13,14,15,16].map(d => (<span key={`row3-${d}`} className="calendar-day">{d}</span>))}
-            {[17,18,19,20,21,22,23].map(d => (<span key={`row4-${d}`} className="calendar-day">{d}</span>))}
-            {[24,25].map(d => (<span key={`row5-${d}`} className="calendar-day">{d}</span>))}
-            <span className="calendar-day target-day">26</span>
-            {[27,28,29,30].map(d => (<span key={`row5b-${d}`} className="calendar-day">{d}</span>))}
-            {[31,1,2,3,4,5,6].map((d,i) => (<span key={`row6-${i}`} className={d>25?"calendar-day":"calendar-day other-month"}>{d}</span>))}
-          </div>
-        </div>
+        </div>        
         <h3 className="sub-title">Үлдсэн хугацаа</h3>
         <div className="countdown">
           {countdownItems.map((item, i) => (
