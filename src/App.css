@@ -424,35 +424,22 @@ body {
   opacity: 0.85;
 }
 
-/* Хүүхдийн зураг */
-.hero-image {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  width: 100%;
-  max-width: 320px;
-  aspect-ratio: 4 / 5;
-  margin: 0 auto;
-  border-radius: 12px;
-  overflow: hidden;
-  background: #fff8e8;
-  box-shadow: 0 4px 16px rgba(180, 134, 11, 0.15);
-}
+
 
 .child-photo {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  object-position: center;
+  object-fit: cover; /* Зургийг муруйхгүй, дүүргэх */
+  object-position: center; /* Төв хэсгийг харуулах */
   display: block;
 }
 
 .shimmer-wrapper {
-  position: relative;
-  display: inline-block;
-  overflow: hidden;
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
   border-radius: 12px;
+  overflow: hidden;
 }
 
 .shimmer-overlay {
@@ -897,4 +884,24 @@ body {
   .count-num { font-size: 22px; }
   .rsvp-option-btn { padding: 10px 25px; font-size: 16px; }
   .side-pattern-left { width: 160px; }
+}
+
+/* === Утасны дэлгэцэнд дасан зохицох === */
+@media (max-width: 480px) {
+  .hero-image {
+    max-width: 300px;
+    aspect-ratio: 4 / 5;
+  }
+  .shimmer-wrapper {
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero-image {
+    max-width: 260px;
+  }
+  .shimmer-wrapper {
+    max-width: 260px;
+  }
 }
